@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paranthropus robustus , Origins</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown-dark: #3D2B1F;
+  --brown-mid: #6B4226;
+  --brown-light: #A0674A;
+  --ochre: #C17F3B;
+  --ochre-light: #E8C07A;
+  --ochre-pale: #F5E6C8;
+  --stone: #8C8478;
+  --stone-light: #C4BDB4;
+  --stone-pale: #EDE8E0;
+  --parchment: #F8F3EB;
+  --parch-dark: #EDE4D3;
+  --text-dark: #2C1F14;
+  --text-mid: #5C4A3A;
+  --text-light: #8C7A6A;
+  --green-pale: #E8F0E4;
+  --green-mid: #5A8A5A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--parchment); color: var(--text-dark); }
+
+/* NAV */
+.topnav {
+  background: var(--brown-dark);
+  padding: 0 1.5rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-bottom: 3px solid var(--ochre);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-brand { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--ochre-light); letter-spacing: 0.06em; white-space: nowrap; }
+.nav-links { display: flex; gap: 0.15rem; }
+.nav-links a { font-size: 0.72rem; color: var(--stone-light); text-decoration: none; padding: 0.35rem 0.65rem; border-radius: 4px; white-space: nowrap; }
+.nav-links a:hover { background: var(--brown-mid); color: var(--ochre-light); }
+.nav-links a.active { color: var(--ochre-light); border-bottom: 2px solid var(--ochre); }
+
+/* SPECIES SELECTOR */
+.species-selector {
+  background: var(--brown-mid);
+  padding: 0.45rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--brown-light);
+}
+.selector-label { font-size: 0.62rem; color: var(--ochre-light); text-transform: uppercase; letter-spacing: 0.1em; margin-right: 0.3rem; white-space: nowrap; }
+.sp-btn {
+  font-size: 0.68rem; font-style: italic; font-family: 'Inter', sans-serif;
+  padding: 0.25rem 0.7rem; border-radius: 20px; cursor: pointer; border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.12); color: var(--ochre-pale);
+  transition: all 0.15s;
+}
+.sp-btn.active { background: var(--ochre); border-color: var(--ochre-light); color: white; font-weight: 600; }
+.sp-btn:hover:not(.active) { background: rgba(255,255,255,0.22); }
+
+/* SPECIES HEADER */
+.species-header {
+  background: var(--parch-dark);
+  padding: 0.85rem 1.5rem;
+  border-bottom: 1px solid var(--stone-light);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+}
+.species-name { font-family: 'Cinzel', serif; font-size: 1.55rem; color: var(--brown-dark); font-style: italic; }
+.species-sub { font-size: 0.72rem; color: var(--stone); letter-spacing: 0.05em; margin-top: 0.15rem; }
+.syllabus-badge {
+  background: var(--ochre-pale); border: 1px solid var(--ochre-light);
+  color: var(--brown-mid); font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.28rem 0.75rem; border-radius: 20px; white-space: nowrap;
+}
+
+/* MAIN LAYOUT */
+.main-grid {
+  width: 100%;
+  border-collapse: collapse;
+}
+.main-grid img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* PANELS */
+.panel {
+  background: white;
+  border: 1px solid var(--stone-light);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.panel-header {
+  background: var(--brown-dark);
+  padding: 0.45rem 0.85rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ochre-light);
+  font-weight: 600;
+}
+.panel-body { padding: 0.65rem 0.85rem; }
+
+/* KEY FACTS TABLE */
+.facts-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+.facts-table td { padding: 0.38rem 0; vertical-align: top; font-size: 0.76rem; }
+.facts-table td:first-child { color: var(--text-light); width: 45%; }
+.facts-table td:last-child { color: var(--text-dark); text-align: right; font-weight: 500; }
+.facts-table tr { border-bottom: 1px solid var(--stone-pale); }
+.facts-table tr:last-child { border-bottom: none; }
+.cc-avg { display: block; color: var(--ochre); font-size: 0.67rem; margin-top: 0.1rem; }
+
+/* CLASSIFICATION TABLE */
+.class-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+.class-table td { padding: 0.25rem 0; }
+.class-table td:first-child { color: var(--text-light); }
+.class-table td:last-child { color: var(--text-dark); text-align: right; }
+.class-table tr { border-bottom: 1px solid var(--stone-pale); }
+.class-table tr:last-child { border-bottom: none; }
+.class-table .highlight td { background: var(--ochre-pale); }
+.class-table .highlight td:first-child { color: var(--brown-mid); font-weight: 600; padding-left: 0.3rem; }
+.class-table .highlight td:last-child { color: var(--brown-dark); font-weight: 600; font-style: italic; padding-right: 0.3rem; }
+
+/* FOSSIL IMAGE */
+.fossil-img-box {
+  background: var(--parch-dark);
+  border: 1px solid var(--stone-light);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.fossil-img-box img {
+  width: 100%; height: 160px; object-fit: cover; display: block;
+}
+.fossil-img-caption {
+  font-size: 0.65rem; color: var(--text-light); padding: 0.35rem 0.65rem;
+  font-style: italic; border-top: 1px solid var(--stone-light);
+}
+
+/* TABS */
+.tab-bar {
+  display: flex;
+  border-bottom: 2px solid var(--ochre);
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.tab-btn {
+  background: transparent; border: none;
+  font-family: 'Inter', sans-serif; font-size: 0.72rem;
+  color: var(--brown-mid); padding: 0.45rem 0.85rem;
+  cursor: pointer; border-radius: 6px 6px 0 0;
+  transition: all 0.15s; white-space: nowrap;
+}
+.tab-btn:hover { background: var(--ochre-pale); }
+.tab-btn.active { background: var(--ochre); color: white; font-weight: 600; }
+
+/* TAB CONTENT */
+.tab-content { display: none !important; }
+.tab-content.active { display: block !important; }
+
+/* CONTENT PANELS */
+.content-panel {
+  background: white; border: 1px solid var(--stone-light);
+  border-radius: 10px; padding: 1rem 1.1rem; margin-bottom: 1rem;
+}
+.content-panel h3 {
+  font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--brown-dark);
+  margin-bottom: 0.6rem; padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--stone-pale);
+}
+.content-panel p { font-size: 0.83rem; color: var(--text-dark); line-height: 1.75; margin-bottom: 0.65rem; }
+.content-panel p:last-child { margin-bottom: 0; }
+.content-panel ul { font-size: 0.83rem; color: var(--text-dark); line-height: 1.7; margin: 0.4rem 0 0.65rem 1.2rem; }
+.content-panel ul li { margin-bottom: 0.25rem; }
+
+/* TWO-COLUMN for locomotion */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+.col-green { background: var(--green-pale); border: 1px solid #9EC99E; border-radius: 8px; padding: 0.75rem; }
+.col-stone { background: var(--stone-pale); border: 1px solid var(--stone-light); border-radius: 8px; padding: 0.75rem; }
+.col-label { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+.col-green .col-label { color: var(--green-mid); }
+.col-stone .col-label { color: var(--stone); }
+
+/* SKULL DIAGRAM */
+.skull-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+.skull-svg-box { background: var(--parch-dark); border-radius: 8px; padding: 0.75rem; text-align: center; }
+.skull-features-list { font-size: 0.8rem; }
+.skull-feature { display: flex; gap: 0.5rem; padding: 0.4rem 0; border-bottom: 1px solid var(--stone-pale); }
+.skull-feature:last-child { border-bottom: none; }
+.sf-num { background: var(--ochre); color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+.sf-text strong { color: var(--brown-dark); display: block; font-size: 0.75rem; }
+.sf-text span { color: var(--text-mid); font-size: 0.72rem; line-height: 1.5; }
+
+/* EXAM FOCUS */
+.exam-tip > *:last-child { flex: 1; min-width: 0; }
+.exam-box {
+  background: #FFF8E8; border: 1px solid var(--ochre-light);
+  border-radius: 10px; padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+.exam-box-focus {
+  background: #EDF4ED; border: 1px solid #9EC99E;
+  border-radius: 10px; padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+.exam-box .exam-box-title { color: var(--ochre); }
+.exam-box-focus .exam-box-title { color: #4A7A4A; }
+.past-exam-entry {
+  border-left: 3px solid #9EC99E;
+  padding-left: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+.past-exam-entry:last-child { margin-bottom: 0; }
+.exam-box-title {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--ochre); margin-bottom: 0.6rem;
+}
+.exam-tip { display: block; margin-bottom: 0.75rem; font-size: 0.82rem; line-height: 1.7; color: var(--text-dark); padding-left: 2rem; position: relative; }
+.exam-tip .tip-num { position: absolute; left: 0; top: 0; }
+.exam-tip:last-child { margin-bottom: 0; }
+.tip-num { background: var(--ochre); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 0.62rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem; }
+
+/* MAP */
+.map-box { border-radius: 8px; overflow: hidden; border: 1px solid var(--stone-light); background: #C8DEB8; }
+.map-placeholder { height: 180px; background: linear-gradient(160deg, #7AADA8 0%, #5B8FAA 40%, #7AADA8 100%); position: relative; display: flex; align-items: center; justify-content: center; }
+.map-africa { fill: #8FBC70; stroke: #5A8A5A; stroke-width: 1.5; }
+.map-dot { fill: var(--ochre); stroke: white; stroke-width: 1.5; cursor: pointer; }
+.map-legend { font-size: 0.65rem; color: var(--text-mid); padding: 0.4rem 0.65rem; background: white; border-top: 1px solid var(--stone-light); }
+
+/* DISCOVERY SITES */
+.site-card { background: var(--stone-pale); border-radius: 7px; padding: 0.6rem 0.75rem; margin-bottom: 0.6rem; }
+.site-card h4 { font-size: 0.78rem; color: var(--brown-dark); margin-bottom: 0.2rem; }
+.site-card p { font-size: 0.72rem; color: var(--text-mid); line-height: 1.55; }
+
+/* DATING */
+.dating-box { background: var(--parch-dark); border-left: 3px solid var(--ochre); padding: 0.65rem 0.85rem; border-radius: 0 7px 7px 0; margin-bottom: 0.75rem; }
+.dating-box strong { font-size: 0.75rem; color: var(--brown-dark); display: block; margin-bottom: 0.2rem; }
+.dating-box p { font-size: 0.75rem; color: var(--text-mid); line-height: 1.6; }
+</style>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="nav-brand">ORIGINS</div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Discovery Map</a>
+    <a href="#">Timeline</a>
+    <a href="#" class="active">Species</a>
+    <a href="#">Tool Cultures</a>
+    <a href="#">Evolutionary Trends</a>
+    <a href="#">Activities</a>
+  </div>
+</nav>
+
+<!-- SPECIES SELECTOR -->
+<div class="species-selector">
+  <span class="selector-label">Select species:</span>
+  <a href="afarensis-profile.html" class="sp-btn ">A. afarensis</a>
+  <a href="africanus-profile.html" class="sp-btn ">A. africanus</a>
+  <a href="robustus-profile.html" class="sp-btn active">P. robustus</a>
+  <span class="sp-btn" style="opacity:0.4;cursor:not-allowed;">H. habilis</span>
+  <span class="sp-btn" style="opacity:0.4;cursor:not-allowed;">H. erectus</span>
+  <span class="sp-btn" style="opacity:0.4;cursor:not-allowed;">H. neanderthalensis</span>
+  <span class="sp-btn" style="opacity:0.4;cursor:not-allowed;">H. sapiens</span>
+</div>
+
+<!-- SPECIES HEADER -->
+<div class="species-header">
+  <div>
+    <div class="species-name">Paranthropus robustus</div>
+    
+  </div>
+  <span class="syllabus-badge">&#9733; Syllabus species</span>
+</div>
+
+<!-- MAIN GRID -->
+<table class="main-grid" cellpadding="0" cellspacing="0">
+<tr>
+  <td class="col-left" style="width:260px;vertical-align:top;padding:1rem 0.5rem 1rem 1.5rem;">
+    <div class="panel" style="margin-bottom: 1rem;">
+      <div class="panel-header">Key Facts</div>
+      <div class="panel-body">
+        <table class="facts-table">
+          <tr><td>Existed</td><td><strong>~2.0 – 1.2 mya</strong></td></tr>
+          <tr><td>Location</td><td>Southern Africa only</td></tr>
+          <tr><td>Height</td><td>~1.0 – 1.2 m</td></tr>
+          <tr><td>Brain size</td><td><span style="white-space:nowrap">500 – 550 cm&#179;</span><span class="cc-avg" style="white-space:nowrap">Average = 530 cm&#179;</span></td></tr>
+          <tr><td>Locomotion</td><td>Bipedal</td></tr>
+          <tr><td>Diet</td><td>Mainly plant material</td></tr>
+          <tr><td>Tool culture</td><td>None recognised</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Mini map -->
+    <div class="panel">
+      <div class="panel-header">Where the Species Lived</div>
+      <div class="map-box">
+        <div style="padding:0.5rem;background:#A8C8D8;border-radius:6px 6px 0 0;"><svg width="100%" viewBox="0 0 280 300" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="300" fill="#A8C8D8"/>
+<path d="M39.7,129.7L33.4,121.6L28.4,114.9L30.4,111.0L31.8,107.5L20.9,105.3L21.4,95.8L23.0,82.5L20.3,73.6L23.9,64.8L29.3,55.1L38.8,47.8L46.6,32.9L57.7,20.9L70.3,20.8L84.4,15.3L104.7,13.4L114.6,14.9L117.3,18.8L117.8,28.1L132.2,32.0L147.2,38.7L154.0,29.8L165.7,33.4L179.6,37.3L190.1,37.1L200.4,42.6L195.8,48.5L194.9,49.5L202.4,64.6L207.5,75.8L214.5,91.2L225.9,104.6L227.4,110.7L229.4,119.2L249.0,119.5L250.1,111.9L256.6,110.7L252.9,124.8L237.3,147.9L223.5,162.2L217.3,169.9L216.1,182.0L216.4,190.7L219.5,200.9L218.3,217.5L203.8,228.0L202.0,239.5L202.8,246.7L192.3,254.4L191.9,264.3L185.5,272.4L170.9,284.7L161.1,285.4L148.9,289.2L143.0,286.7L142.5,277.2L133.4,262.5L129.2,242.7L123.0,228.8L121.4,212.8L126.6,201.9L124.0,190.9L121.7,179.9L123.1,172.8L128.6,174.1L134.7,166.2L140.6,156.0L143.1,144.6L134.8,147.1L124.4,148.7L129.0,157.9L122.9,163.2L117.8,171.0L110.7,157.5L113.3,144.0L108.8,137.4L97.9,137.0L85.8,132.2L69.4,136.6L56.7,137.7L45.0,134.3Z" fill="#8FBC70" stroke="#4A7A4A" stroke-width="0.6" fill-rule="evenodd"/><path d="M253.4,217.1L252.2,214.9L251.5,216.0L252.2,218.9L251.9,220.5L250.9,221.4L250.7,224.6L249.3,229.1L247.6,234.4L245.5,241.6L244.2,247.0L242.6,251.4L239.8,252.3L236.8,254.0L234.8,253.0L232.0,251.6L231.0,249.6L230.8,246.2L229.6,243.1L229.3,240.4L229.9,237.6L231.5,236.9L231.5,235.7L233.2,232.7L233.5,230.3L232.7,228.5L232.0,226.1L231.7,222.5L232.9,220.4L233.4,218.0L235.1,217.8L237.1,217.0L238.4,216.3L239.9,216.3L241.9,214.1L244.7,211.7L245.8,209.8L245.3,208.2L246.8,208.6L248.7,206.0L248.7,203.7L249.9,201.9L251.1,203.6L252.0,205.2L252.9,207.7L253.4,212.4L254.3,214.2L254.0,216.0L253.4,217.1Z" fill="#8FBC70" stroke="#4A7A4A" stroke-width="0.6" fill-rule="evenodd"/>
+<path d="M188.6,268.0L187.9,268.5L186.5,270.5L185.5,272.4L183.5,275.2L179.6,279.2L177.2,281.5L174.5,283.2L170.9,284.7L169.2,284.9L168.7,286.0L166.6,285.4L164.9,286.1L161.1,285.4L159.0,285.8L157.6,285.6L154.0,287.2L151.1,287.8L148.9,289.2L147.3,289.3L145.9,287.9L144.7,287.9L143.2,286.2L143.0,286.7L142.6,285.7L142.6,283.4L141.5,280.8L142.6,280.1L142.5,277.2L140.2,273.6L138.5,270.4L138.5,270.3L136.0,265.4L137.7,263.5L139.0,264.5L139.6,266.2L141.2,266.4L143.3,267.2L145.2,266.9L148.3,264.9L148.3,250.8L149.2,251.3L151.3,255.0L151.0,257.3L151.8,258.7L154.2,258.3L156.0,256.6L157.6,255.4L158.5,253.6L160.1,252.7L161.6,253.1L163.3,254.2L166.1,254.4L168.3,253.5L168.7,252.3L169.3,250.5L171.2,250.2L172.2,248.7L173.3,246.2L176.5,243.3L181.4,240.5L182.8,240.5L184.5,241.2L185.6,240.7L187.5,241.1L189.1,246.5L190.0,249.2L189.4,253.5L189.7,254.9L188.0,254.2L187.0,254.4L186.6,255.6L185.7,257.0L185.7,258.3L187.8,260.4L189.8,260.0L190.5,258.3L193.1,258.3L192.3,261.1L191.9,264.3L191.0,266.0L188.6,268.0Z" fill="#C17F3B" stroke="#7A4A1A" stroke-width="1" fill-rule="evenodd"/>
+<text x="14" y="19" font-family="Inter,Arial,sans-serif" font-size="10" fill="#2C1F14" font-weight="700">N</text>
+<line x1="18" y1="21" x2="18" y2="35" stroke="#2C1F14" stroke-width="1.3"/>
+<polygon points="18,21 15,29 18,27 21,29" fill="#2C1F14"/>
+</svg></div>
+        
+      </div>
+    </div>
+  </td>
+  <td class="col-centre" style="vertical-align:top;padding:1rem 0.5rem;">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('overview', this)">Overview</button>
+      <button class="tab-btn" onclick="switchTab('skull', this)">Skull features</button>
+      <button class="tab-btn" onclick="switchTab('locomotion', this)">Locomotion</button>
+      <button class="tab-btn" onclick="switchTab('diet', this)">Diet</button>
+      <button class="tab-btn" onclick="switchTab('discovery', this)">Fossils</button>
+      <button class="tab-btn" onclick="switchTab('tools', this)">Tool culture</button>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div id="tab-overview" class="tab-content active">
+      <div class="content-panel">
+        <h3>Who was <em>Paranthropus robustus</em>?</h3>
+        <p><em>Paranthropus robustus</em> is a robust hominin that lived approximately 2.0 to 1.2 million years ago in Southern Africa. The name means 'beside human, robust form'. It lived in open savannah grasslands and woodlands, and is found exclusively at cave sites in South Africa, making it the southern counterpart to <em>P. boisei</em> in East Africa.</p>
+        <p>The entire skull is built around processing hard, tough plant food. The sagittal crest, massive zygomatic arches, enormous molars and deep mandible form a single adaptive package. This is why the species is nicknamed 'nutcracker man'.</p>
+        <p><em>P. robustus</em> is an evolutionary dead end, a side branch that became highly specialised and then extinct around 1.2 million years ago, leaving no descendants. It coexisted with early <em>Homo</em> at Swartkrans for hundreds of thousands of years.</p>
+      </div>
+      <div class="content-panel">
+        <h3>Key fossils</h3>
+        <ul>
+          <li><strong>TM 1517:</strong> the type specimen from Kromdraai, discovered in 1938.</li>
+          <li><strong>SK 48:</strong> a well-preserved cranium from Swartkrans showing the sagittal crest, dish-shaped face and flared zygomatic arches.</li>
+          <li><strong>DNH 7:</strong> a specimen from Drimolen, one of the most complete <em>P. robustus</em> crania known.</li>
+        </ul>
+      </div>
+<div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>When writing a species name, capitalise the genus and underline the full name, e.g. <span style="white-space:nowrap"><u><em>Paranthropus robustus</em></u></span>.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>All <em>Paranthropus</em> species have a sagittal crest.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>Robust refers to thick, heavily built bones throughout the skeleton, particularly the skull and chewing apparatus. Do not confuse robust with large body size, as <em>P. robustus</em> was only approximately 1.0 to 1.2 m tall.</div>
+        <div class="exam-tip"><span class="tip-num">4</span><em>P. robustus</em> is an evolutionary dead end. It is not a direct ancestor of <em>Homo</em>.</div>
+        <div class="exam-tip"><span class="tip-num">5</span>Do NOT credit this species with a stone tool culture.</div>
+      </div>
+    </div>
+
+    <!-- SKULL FEATURES -->
+    <div id="tab-skull" class="tab-content">
+      <div class="content-panel">
+        <h3>Skull features</h3>
+        <p>The skull of <em>P. robustus</em> is the most distinctive of the syllabus species. Every major feature relates to generating and withstanding the forces produced by chewing hard, tough food. The key distinguishing features are listed below.</p>
+        <div class="skull-wrap">
+          <div>
+            <div class="skull-svg-box">
+              <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="105" cy="82" rx="48" ry="40" fill="#E8C07A" stroke="#A0674A" stroke-width="1.5"/>
+                <path d="M80,44 Q105,32 130,44" fill="none" stroke="#6B4226" stroke-width="3"/>
+                <path d="M62,72 Q72,62 88,60 Q104,58 118,64" fill="#A0674A" stroke="#6B4226" stroke-width="1" opacity="0.8"/>
+                <path d="M62,72 Q50,86 48,102 Q46,118 52,132 Q60,142 72,146 Q84,150 92,144 Q100,136 100,124" fill="#EDE4D3" stroke="#A0674A" stroke-width="1.5"/>
+                <path d="M52,132 Q56,152 72,158 Q88,162 98,150 Q104,138 100,124" fill="#EDE4D3" stroke="#A0674A" stroke-width="1.5"/>
+                <path d="M118,68 Q148,62 158,78 Q155,96 135,98" fill="none" stroke="#6B4226" stroke-width="2.5"/>
+                <ellipse cx="100" cy="130" rx="7" ry="4" fill="#6B4226" opacity="0.5"/>
+                <rect x="52" y="140" width="44" height="10" rx="2" fill="#F5F5F0" stroke="#C4BDB4" stroke-width="0.5"/>
+                <circle cx="78" cy="48" r="8" fill="#C17F3B"/><text x="78" y="52" font-family="Inter,sans-serif" font-size="9" fill="white" text-anchor="middle">1</text>
+                <circle cx="56" cy="66" r="8" fill="#C17F3B"/><text x="56" y="70" font-family="Inter,sans-serif" font-size="9" fill="white" text-anchor="middle">2</text>
+                <circle cx="105" cy="34" r="8" fill="#C17F3B"/><text x="105" y="38" font-family="Inter,sans-serif" font-size="9" fill="white" text-anchor="middle">3</text>
+                <circle cx="38" cy="105" r="8" fill="#C17F3B"/><text x="38" y="109" font-family="Inter,sans-serif" font-size="9" fill="white" text-anchor="middle">4</text>
+                <circle cx="163" cy="80" r="8" fill="#C17F3B"/><text x="163" y="84" font-family="Inter,sans-serif" font-size="9" fill="white" text-anchor="middle">5</text>
+                <circle cx="112" cy="130" r="8" fill="#C17F3B"/><text x="112" y="134" font-family="Inter,sans-serif" font-size="9" fill="white" text-anchor="middle">6</text>
+                <circle cx="75" cy="105" r="8" fill="#C17F3B"/><text x="75" y="109" font-family="Inter,sans-serif" font-size="9" fill="white" text-anchor="middle">7</text>
+                <text x="100" y="18" font-family="Inter,sans-serif" font-size="9" fill="#6B4226" text-anchor="middle" font-style="italic">P. robustus, lateral view</text>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <div class="skull-features-list">
+              <div class="skull-feature">
+                <div class="sf-num">1</div>
+                <div class="sf-text"><strong>No forehead</strong><span>Low cranial vault. No forehead. The skull slopes away steeply behind a thick, continuous brow ridge. Small frontal lobe.</span></div>
+              </div>
+              <div class="skull-feature">
+                <div class="sf-num">2</div>
+                <div class="sf-text"><strong>Prominent brow ridge</strong><span>Continuous, heavy brow ridge.</span></div>
+              </div>
+              <div class="skull-feature">
+                <div class="sf-num">3</div>
+                <div class="sf-text"><strong>Sagittal crest</strong><span>Present and prominent. Larger in males. A defining feature of all <em>Paranthropus</em> species. Anchors the massive temporalis muscles.</span></div>
+              </div>
+              <div class="skull-feature">
+                <div class="sf-num">4</div>
+                <div class="sf-text"><strong>Prognathism</strong><span>Strong prognathism. Jaws project well forward of the braincase, resulting in a sloping face, but less than australopithecines. Heavy mandible with no chin.</span></div>
+              </div>
+              <div class="skull-feature">
+                <div class="sf-num">5</div>
+                <div class="sf-text"><strong>Massive, flared zygomatic arches</strong><span>Enormous and widely flared, with a large gap for the temporalis muscle.</span></div>
+              </div>
+              <div class="skull-feature">
+                <div class="sf-num">6</div>
+                <div class="sf-text"><strong>Foramen magnum position</strong><span>Positioned further forward than in a great ape but not as central as in <em>Homo</em>, consistent with bipedal posture.</span></div>
+              </div>
+              <div class="skull-feature">
+                <div class="sf-num">7</div>
+                <div class="sf-text"><strong>Broad, flat dish-shaped face</strong><span>The cheek region is set well forward, positioning the chewing muscles for maximum force on the back teeth. This dish-shaped face is the most recognisable visual feature of the species.</span></div>
+              </div>
+            </div>
+      </div>
+      <div class="content-panel">
+        <h3>Dentition</h3>
+        <ul>
+          <li><strong>Molars and premolars:</strong> massive, with very thick enamel and a large grinding surface. Premolars are molarised, they look and function like extra molars.</li>
+          <li><strong>Incisors and canines:</strong> small relative to the molars. The difference in size between front and back teeth is extreme. Little need to bite or tear, all the work is done by the back teeth.</li>
+          <li><strong>Mandible:</strong> extremely deep, thick and robust. No chin. Resists the very large forces generated during chewing.</li>
+          <li><strong>Dental arcade:</strong> U-shaped.</li>
+          <li><strong>Tooth wear:</strong> heavy pitting and scratching, consistent with abrasive, gritty food.</li>
+        </ul>
+      </div>
+            <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>All <em>Paranthropus</em> species have a sagittal crest.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>The genus name <em>Paranthropus</em> signals more ape-like features and a more distant relationship to <em>Homo</em>, compared with <em>Australopithecus</em>.</div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- LOCOMOTION -->
+    <div id="tab-locomotion" class="tab-content">
+      <div class="content-panel">
+        <h3>Bipedal</h3>
+        <p><em>P. robustus</em> was a habitual biped. The lower limb skeleton is fully adapted for bipedal walking, similar to the australopithecines. Some features of the arm suggest retained climbing ability, though <em>P. robustus</em> was primarily ground-dwelling.</p>
+        <div class="two-col" style="margin-top:0.75rem;margin-bottom:0.85rem;">
+          <div class="col-green" style="background:#000000;border:1px solid #C4BDB4;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0.5rem;">
+            <img src="data:image/jpeg;base64,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" alt="Paranthropus robustus skeleton reconstruction" style="width:100%;border-radius:6px;object-fit:contain;">
+            <div style="font-size:0.65rem;color:#aaaaaa;font-style:italic;margin-top:0.35rem;text-align:center;"><em>P. robustus</em> skeleton reconstruction</div>
+          </div>
+          <div class="col-green">
+            <div class="col-label" style="color:var(--green-mid);">Evidence of bipedalism</div>
+            <ul style="font-size:0.78rem; color:var(--text-dark); line-height:1.65; margin-left:1rem;">
+              <li>Lower limbs fully adapted for bipedalism</li>
+              <li>Short, broad, bowl-shaped pelvis similar to <em>Australopithecus</em></li>
+              <li>Carrying angle: femur angles inward from hip to knee so feet fall under centre of gravity, allowing balance and stability during walking</li>
+              <li>Large medial and lateral condyles at the knee for weight-bearing and stability</li>
+              <li>Foot with a well-developed arch for weight-bearing and propulsion</li>
+              <li>Big toe robust and non-opposable</li>
+              <li>Foramen magnum positioned forward under the skull to allow erect posture</li>
+              <li>Thick, robust limb bones consistent with a ground-dwelling biped</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-stone" style="border-radius:8px;">
+          <div class="col-label">Retained climbing features</div>
+          <ul style="font-size:0.78rem; color:var(--text-dark); line-height:1.65; margin-left:1rem;">
+            <li>Arms still relatively long compared to legs</li>
+            <li>Hand bones from Swartkrans show a broad thumb tip and anatomy for a precision grip, suggesting dexterous tool use as well as climbing</li>
+            <li>Small body size means less energy is required for climbing</li>
+          </ul>
+        </div>
+      </div>
+            <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span><em>P. robustus</em> was a habitual biped. Do not describe it as fully terrestrial — hand bones from Swartkrans suggest some retained dexterity and possible climbing ability.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>Key bipedal features to link to function: bowl-shaped pelvis for balance, carrying angle for stable gait, large knee condyles for weight-bearing, foot arch and non-opposable big toe for propulsion.</div>
+      </div>
+    </div>
+
+<div id="tab-diet" class="tab-content">
+      <div class="content-panel">
+        <h3>Diet</h3>
+        <p>The whole skull of <em>P. robustus</em> is built around processing hard, tough, low-quality plant food. Powerful grinding teeth and jaws suggest it ate large amounts of tough vegetation. Tooth wear patterns suggest hard foods such as seeds, nuts and roots were a major part of the diet.</p>
+        <p>The diet was primarily plant-based, though it probably also ate fruit, young leaves, insects and some small animals when available.</p>
+        <ul>
+          <li><strong>Massive molars with very thick enamel:</strong> for grinding hard, abrasive plant material</li>
+          <li><strong>Molarised premolars:</strong> premolars function as extra molars, providing a large grinding surface</li>
+          <li><strong>Extremely deep, robust mandible:</strong> resists the very large forces generated during prolonged chewing</li>
+          <li><strong>Enormous zygomatic arches and sagittal crest:</strong> anchor the massive temporalis and masseter chewing muscles</li>
+          <li><strong>Small incisors and canines:</strong> little need for biting or tearing, all the work is done by the back teeth</li>
+        </ul>
+      </div>
+            <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>The skull of <em>P. robustus</em> is an adaptive package for processing hard food. Every major feature (sagittal crest, zygomatic arches, deep mandible, molarised premolars, thick enamel) links to the same function.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>In exam questions linking skull features to diet, connect each feature to its function: sagittal crest and zygomatic arches anchor chewing muscles, thick enamel resists abrasion, deep mandible resists chewing forces.</div>
+      </div>
+    </div>
+
+    <!-- FOSSILS TAB -->
+    <div id="tab-discovery" class="tab-content">
+      <div class="content-panel">
+        <h3>Key fossil sites</h3>
+        <div class="site-card">
+          <h4>TM 1517, Kromdraai</h4>
+          <p style="margin-bottom:0.5rem;">The type specimen, discovered at Kromdraai, South Africa, in 1938 by Gert Terblanche. Described by Robert Broom, who named the species.</p>
+          <p>Includes a partial skull, teeth and postcranial bones. Used to establish the defining features of the species including the sagittal crest and robust mandible.</p>
+        </div>
+        <div class="site-card">
+          <h4>SK 48, Swartkrans</h4>
+          <p style="margin-bottom:0.5rem;">A well-preserved cranium from Swartkrans, South Africa. The most complete and well-known <em>P. robustus</em> skull.</p>
+          <p>The best specimen for demonstrating the sagittal crest, dish-shaped face and massive flared zygomatic arches. The Swartkrans site also contains early <em>Homo</em> fossils and pointed bone tools, confirming that <em>P. robustus</em> coexisted with early <em>Homo</em>.</p>
+        </div>
+        <div class="site-card">
+          <h4>DNH 7, Drimolen</h4>
+          <p style="margin-bottom:0.5rem;">One of the most complete <em>P. robustus</em> crania known, from Drimolen, South Africa.</p>
+          <p>Confirms the skull features of the species and extends the known range to the Drimolen cave system.</p>
+        </div>
+        <div class="site-card">
+          <h4>Coexistence with early <em>Homo</em> at Swartkrans</h4>
+          <p style="margin-bottom:0.5rem;">Fossils of both <em>P. robustus</em> and early <em>Homo</em> are found at Swartkrans in the same deposits.</p>
+          <p>This confirms that <em>P. robustus</em> coexisted with early members of the genus <em>Homo</em> for hundreds of thousands of years. Pointed bone tools found at Swartkrans are of uncertain attribution as both species were present.</p>
+        </div>
+      </div>
+      <div class="content-panel">
+        <h3>Fossil site map</h3>
+        <p style="font-size:0.78rem;color:var(--text-mid);margin-bottom:0.75rem;">Click a marker to learn about each discovery site.</p>
+        <div id="fossilMap" style="height:340px;border-radius:8px;border:1px solid var(--stone-light);overflow:hidden;"></div>
+        <p id="mapOfflineMsg" style="display:none;font-size:0.75rem;color:var(--text-light);font-style:italic;margin-top:0.4rem;text-align:center;">Interactive map available when online or hosted on GitHub Pages.</p>
+        <p style="font-size:0.65rem;color:var(--text-light);margin-top:0.35rem;font-style:italic;">Map data &copy; OpenStreetMap contributors</p>
+      </div>
+      <div class="content-panel">
+        <h3>Dating method</h3>
+        <div class="dating-box">
+          <strong>Cave breccia dating</strong>
+          <p><em>P. robustus</em> fossils come from cave breccia in South Africa, not from volcanic ash layers. Potassium-argon dating cannot be used. Methods used include palaeomagnetism and faunal correlation. Radiocarbon dating cannot be used as the fossils are over 60,000 years old.</p>
+        </div>
+              <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>Potassium-argon dating cannot be used for <em>P. robustus</em> as there are no volcanic ash layers in Southern African cave sites.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>Radiocarbon dating cannot be used as the fossils are over 60,000 years old.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>Methods used instead: palaeomagnetism and faunal correlation.</div>
+      </div>
+      </div>
+    </div>
+    
+      </div>
+
+
+    <!-- TOOL CULTURE -->
+    <div id="tab-tools" class="tab-content">
+      <div class="content-panel">
+        <h3>Tool culture</h3>
+        <p>There is <strong>no stone tool culture</strong> attributed to <em>Paranthropus robustus</em>. Pointed bone tools found at Swartkrans show wear patterns consistent with digging termite mounds, which would have provided a valuable protein source. However, because early <em>Homo</em> fossils occur at the same site, these tools cannot be attributed to <em>P. robustus</em> with certainty.</p>
+        <p>For examination purposes, <em>P. robustus</em> has no recognised tool culture. The first hominin known to manufacture stone tools is <em>Homo habilis</em>, with the Oldowan tool culture beginning approximately 2.6 million years ago.</p>
+      </div>
+    </div>
+  </td>
+  <td class="col-right" style="width:215px;vertical-align:top;padding:1rem 1.5rem 1rem 0.5rem;">
+    <!-- Skull image -->
+    <div class="fossil-img-box" style="margin-bottom:1rem;">
+      <img src="data:image/jpeg;base64,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"
+           alt="Paranthropus robustus skull"
+           style="width:100%;object-fit:contain;background:#ffffff;display:block;">
+      <div class="fossil-img-caption"><em>Paranthropus robustus</em> skull</div>
+    </div>
+
+    <!-- Classification -->
+    <div class="panel">
+      <div class="panel-header">Classification</div>
+      <div class="panel-body">
+        <table class="class-table">
+          <tr><td>Domain</td><td>Eukaryota</td></tr>
+          <tr><td>Kingdom</td><td>Animalia</td></tr>
+          <tr><td>Phylum</td><td>Chordata</td></tr>
+          <tr><td>Class</td><td>Mammalia</td></tr>
+          <tr><td>Order</td><td>Primates</td></tr>
+          <tr><td>Family</td><td>Hominidae</td></tr>
+          <tr><td>Subfamily</td><td>Homininae</td></tr>
+          <tr><td>Tribe</td><td>Hominini</td></tr>
+          <tr class="highlight"><td>Genus</td><td><em>Paranthropus</em></td></tr>
+          <tr class="highlight"><td>Species</td><td><em>robustus</em></td></tr>
+        </table>
+      </div>
+    </div></td>
+</tr>
+</table><!-- end main grid -->
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  var locoImg = document.getElementById('locomotion-img');
+  if (locoImg) locoImg.style.display = id === 'locomotion' ? 'block' : 'none';
+}
+</script>
+
+
+
+<script>
+(function() {
+  var mapInitialised = false;
+
+  function initFossilMap() {
+    if (mapInitialised) return;
+    if (typeof L === 'undefined') {
+      document.getElementById('mapOfflineMsg').style.display = 'block';
+      return;
+    }
+    mapInitialised = true;
+    var map = L.map('fossilMap').setView([-26, 27.8], 9);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors', maxZoom: 13
+    }).addTo(map);
+
+    var icon = L.divIcon({
+      className: '',
+      html: '<div style="width:14px;height:14px;background:#C17F3B;border:2px solid white;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.4);"></div>',
+      iconSize: [14,14], iconAnchor: [7,7], popupAnchor: [0,-7]
+    });
+
+    var sites = [
+      { lat:-26.0, lng:27.8, name:'Swartkrans, South Africa',
+        info:'<strong>Swartkrans, Gauteng</strong><br>Site of SK 48 and SK 46. Contains both <em>P. robustus</em> and early <em>Homo</em> fossils, plus pointed bone tools whose maker is uncertain.' },
+      { lat:-26.1, lng:27.9, name:'Kromdraai, South Africa',
+        info:'<strong>Kromdraai, Gauteng</strong><br>Site of TM 1517, the type specimen described by Robert Broom in 1938.' },
+      { lat:-25.9, lng:27.8, name:'Drimolen, South Africa',
+        info:'<strong>Drimolen, Gauteng</strong><br>Site of DNH 7, one of the most complete <em>P. robustus</em> crania known.' },
+    ];
+
+    sites.forEach(function(s) {
+      L.marker([s.lat, s.lng], {icon: icon})
+        .addTo(map)
+        .bindPopup(s.info, {maxWidth: 240});
+    });
+  }
+
+  var _orig = window.switchTab;
+  window.switchTab = function(id, btn) {
+    _orig(id, btn);
+    if (id === 'discovery') setTimeout(initFossilMap, 80);
+  };
+})();
+</script>
+</body>
+</html>
