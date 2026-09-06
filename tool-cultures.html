@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tool Cultures , Origins</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown-dark: #3D2B1F;
+  --brown-mid: #6B4226;
+  --brown-light: #A0674A;
+  --ochre: #C17F3B;
+  --ochre-light: #E8C07A;
+  --ochre-pale: #F5E6C8;
+  --stone: #8C8478;
+  --stone-light: #C4BDB4;
+  --stone-pale: #EDE8E0;
+  --parchment: #F8F3EB;
+  --parch-dark: #EDE4D3;
+  --text-dark: #2C1F14;
+  --text-mid: #5C4A3A;
+  --text-light: #8C7A6A;
+  --green-pale: #E8F0E4;
+  --green-mid: #5A8A5A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--parchment); color: var(--text-dark); }
+
+/* NAV */
+.topnav {
+  background: var(--brown-dark);
+  padding: 0 1.5rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-bottom: 3px solid var(--ochre);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-brand { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--ochre-light); letter-spacing: 0.06em; white-space: nowrap; }
+.nav-links { display: flex; gap: 0.15rem; }
+.nav-links a { font-size: 0.72rem; color: var(--stone-light); text-decoration: none; padding: 0.35rem 0.65rem; border-radius: 4px; white-space: nowrap; }
+.nav-links a:hover { background: var(--brown-mid); color: var(--ochre-light); }
+.nav-links a.active { color: var(--ochre-light); border-bottom: 2px solid var(--ochre); }
+
+/* SPECIES SELECTOR */
+.species-selector {
+  background: var(--brown-mid);
+  padding: 0.45rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--brown-light);
+}
+.selector-label { font-size: 0.62rem; color: var(--ochre-light); text-transform: uppercase; letter-spacing: 0.1em; margin-right: 0.3rem; white-space: nowrap; }
+.sp-btn {
+  font-size: 0.68rem; font-style: italic; font-family: 'Inter', sans-serif;
+  padding: 0.25rem 0.7rem; border-radius: 20px; cursor: pointer; border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.12); color: var(--ochre-pale);
+  transition: all 0.15s;
+}
+.sp-btn.active { background: var(--ochre); border-color: var(--ochre-light); color: white; font-weight: 600; }
+.sp-btn:hover:not(.active) { background: rgba(255,255,255,0.22); }
+
+/* SPECIES HEADER */
+.species-header {
+  background: var(--parch-dark);
+  padding: 0.85rem 1.5rem;
+  border-bottom: 1px solid var(--stone-light);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+}
+.species-name { font-family: 'Cinzel', serif; font-size: 1.55rem; color: var(--brown-dark); font-style: italic; }
+.species-sub { font-size: 0.72rem; color: var(--stone); letter-spacing: 0.05em; margin-top: 0.15rem; }
+.syllabus-badge {
+  background: var(--ochre-pale); border: 1px solid var(--ochre-light);
+  color: var(--brown-mid); font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.28rem 0.75rem; border-radius: 20px; white-space: nowrap;
+}
+
+/* MAIN LAYOUT */
+.main-grid {
+  width: 100%;
+  border-collapse: collapse;
+}
+.main-grid img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* PANELS */
+.panel {
+  background: white;
+  border: 1px solid var(--stone-light);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.panel-header {
+  background: var(--brown-dark);
+  padding: 0.45rem 0.85rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ochre-light);
+  font-weight: 600;
+}
+.panel-body { padding: 0.65rem 0.85rem; }
+
+/* KEY FACTS TABLE */
+.facts-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+.facts-table td { padding: 0.38rem 0; vertical-align: top; font-size: 0.76rem; }
+.facts-table td:first-child { color: var(--text-light); width: 45%; }
+.facts-table td:last-child { color: var(--text-dark); text-align: right; font-weight: 500; }
+.facts-table tr { border-bottom: 1px solid var(--stone-pale); }
+.facts-table tr:last-child { border-bottom: none; }
+.cc-avg { display: block; color: var(--ochre); font-size: 0.67rem; margin-top: 0.1rem; }
+
+/* CLASSIFICATION TABLE */
+.class-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+.class-table td { padding: 0.25rem 0; }
+.class-table td:first-child { color: var(--text-light); }
+.class-table td:last-child { color: var(--text-dark); text-align: right; }
+.class-table tr { border-bottom: 1px solid var(--stone-pale); }
+.class-table tr:last-child { border-bottom: none; }
+.class-table .highlight td { background: var(--ochre-pale); }
+.class-table .highlight td:first-child { color: var(--brown-mid); font-weight: 600; padding-left: 0.3rem; }
+.class-table .highlight td:last-child { color: var(--brown-dark); font-weight: 600; font-style: italic; padding-right: 0.3rem; }
+
+/* FOSSIL IMAGE */
+.fossil-img-box {
+  background: var(--parch-dark);
+  border: 1px solid var(--stone-light);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.fossil-img-box img {
+  width: 100%; height: 160px; object-fit: cover; display: block;
+}
+.fossil-img-caption {
+  font-size: 0.65rem; color: var(--text-light); padding: 0.35rem 0.65rem;
+  font-style: italic; border-top: 1px solid var(--stone-light);
+}
+
+/* TABS */
+.tab-bar {
+  display: flex;
+  border-bottom: 2px solid var(--ochre);
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.tab-btn {
+  background: transparent; border: none;
+  font-family: 'Inter', sans-serif; font-size: 0.72rem;
+  color: var(--brown-mid); padding: 0.45rem 0.85rem;
+  cursor: pointer; border-radius: 6px 6px 0 0;
+  transition: all 0.15s; white-space: nowrap;
+}
+.tab-btn:hover { background: var(--ochre-pale); }
+.tab-btn.active { background: var(--ochre); color: white; font-weight: 600; }
+
+/* TAB CONTENT */
+.tab-content { display: none !important; }
+.tab-content.active { display: block !important; }
+
+/* CONTENT PANELS */
+.content-panel {
+  background: white; border: 1px solid var(--stone-light);
+  border-radius: 10px; padding: 1rem 1.1rem; margin-bottom: 1rem;
+}
+.content-panel h3 {
+  font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--brown-dark);
+  margin-bottom: 0.6rem; padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--stone-pale);
+}
+.content-panel p { font-size: 0.83rem; color: var(--text-dark); line-height: 1.75; margin-bottom: 0.65rem; }
+.content-panel p:last-child { margin-bottom: 0; }
+.content-panel ul { font-size: 0.83rem; color: var(--text-dark); line-height: 1.7; margin: 0.4rem 0 0.65rem 1.2rem; }
+.content-panel ul li { margin-bottom: 0.25rem; }
+
+/* TWO-COLUMN for locomotion */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+.col-green { background: var(--green-pale); border: 1px solid #9EC99E; border-radius: 8px; padding: 0.75rem; }
+.col-stone { background: var(--stone-pale); border: 1px solid var(--stone-light); border-radius: 8px; padding: 0.75rem; }
+.col-label { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+.col-green .col-label { color: var(--green-mid); }
+.col-stone .col-label { color: var(--stone); }
+
+/* SKULL DIAGRAM */
+.skull-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+.skull-svg-box { background: var(--parch-dark); border-radius: 8px; padding: 0.75rem; text-align: center; }
+.skull-features-list { font-size: 0.8rem; }
+.skull-feature { display: flex; gap: 0.5rem; padding: 0.4rem 0; border-bottom: 1px solid var(--stone-pale); }
+.skull-feature:last-child { border-bottom: none; }
+.sf-num { background: var(--ochre); color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+.sf-text strong { color: var(--brown-dark); display: block; font-size: 0.75rem; }
+.sf-text span { color: var(--text-mid); font-size: 0.72rem; line-height: 1.5; }
+
+/* EXAM FOCUS */
+.exam-tip > *:last-child { flex: 1; min-width: 0; }
+.exam-box {
+  background: #FFF8E8; border: 1px solid var(--ochre-light);
+  border-radius: 10px; padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+.exam-box-focus {
+  background: #EDF4ED; border: 1px solid #9EC99E;
+  border-radius: 10px; padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+.exam-box .exam-box-title { color: var(--ochre); }
+.exam-box-focus .exam-box-title { color: #4A7A4A; }
+.past-exam-entry {
+  border-left: 3px solid #9EC99E;
+  padding-left: 0.75rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--text-dark);
+}
+.past-exam-entry:last-child { margin-bottom: 0; }
+.exam-box-title {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--ochre); margin-bottom: 0.6rem;
+}
+.exam-tip { display: block; margin-bottom: 0.75rem; font-size: 0.82rem; line-height: 1.7; color: var(--text-dark); padding-left: 2rem; position: relative; }
+.exam-tip .tip-num { position: absolute; left: 0; top: 0; }
+.exam-tip:last-child { margin-bottom: 0; }
+.tip-num { background: var(--ochre); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 0.62rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem; }
+
+/* MAP */
+.map-box { border-radius: 8px; overflow: hidden; border: 1px solid var(--stone-light); background: #C8DEB8; }
+.map-placeholder { height: 180px; background: linear-gradient(160deg, #7AADA8 0%, #5B8FAA 40%, #7AADA8 100%); position: relative; display: flex; align-items: center; justify-content: center; }
+.map-africa { fill: #8FBC70; stroke: #5A8A5A; stroke-width: 1.5; }
+.map-dot { fill: var(--ochre); stroke: white; stroke-width: 1.5; cursor: pointer; }
+.map-legend { font-size: 0.65rem; color: var(--text-mid); padding: 0.4rem 0.65rem; background: white; border-top: 1px solid var(--stone-light); }
+
+/* DISCOVERY SITES */
+.site-card { background: var(--stone-pale); border-radius: 7px; padding: 0.6rem 0.75rem; margin-bottom: 0.6rem; }
+.site-card h4 { font-size: 0.78rem; color: var(--brown-dark); margin-bottom: 0.2rem; }
+.site-card p { font-size: 0.72rem; color: var(--text-mid); line-height: 1.55; }
+
+/* DATING */
+.dating-box { background: var(--parch-dark); border-left: 3px solid var(--ochre); padding: 0.65rem 0.85rem; border-radius: 0 7px 7px 0; margin-bottom: 0.75rem; }
+.dating-box strong { font-size: 0.75rem; color: var(--brown-dark); display: block; margin-bottom: 0.2rem; }
+.dating-box p { font-size: 0.75rem; color: var(--text-mid); line-height: 1.6; }
+</style>
+
+
+<style>
+/* TOOL CULTURES PAGE */
+.seq-rail { padding: 0.35rem 0; }
+.seq-step { position: relative; padding: 0 0 0 1.6rem; margin-bottom: 0.75rem; }
+.seq-step:last-child { margin-bottom: 0; }
+.seq-step:before {
+  content: ''; position: absolute; left: 6px; top: 16px; bottom: -0.75rem;
+  width: 2px; background: var(--stone-light);
+}
+.seq-step:last-child:before { display: none; }
+.seq-dot {
+  position: absolute; left: 0; top: 3px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--ochre); border: 2px solid white; box-shadow: 0 0 0 1px var(--ochre);
+}
+.seq-name { font-size: 0.78rem; font-weight: 600; color: var(--brown-dark); }
+.seq-sp { font-size: 0.7rem; color: var(--ochre); font-style: italic; }
+.seq-meta { font-size: 0.67rem; color: var(--text-light); line-height: 1.45; margin-top: 0.1rem; }
+.seq-sub { font-size: 0.66rem; color: var(--text-mid); margin-top: 0.25rem; padding-left: 0.1rem; line-height: 1.5; }
+.link-list a { display: block; font-size: 0.73rem; color: var(--brown-mid); text-decoration: none;
+  padding: 0.3rem 0; border-bottom: 1px solid var(--stone-pale); font-style: italic; }
+.link-list a:last-child { border-bottom: none; }
+.link-list a:hover { color: var(--ochre); }
+.tool-fig { background: var(--parch-dark); border-radius: 8px; padding: 0.85rem 0.6rem 0.5rem;
+  margin: 0.5rem 0 0.75rem; }
+.tool-fig-cap { font-size: 0.68rem; color: var(--text-light); font-style: italic;
+  text-align: center; margin-top: 0.35rem; padding: 0 0.5rem; line-height: 1.5; }
+.exam-fig { background: white; border: 1px solid var(--stone-light); border-radius: 7px;
+  padding: 0.6rem 0.4rem 0.3rem; margin: 0.5rem 0; }
+.trend-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.6rem;
+  align-items: stretch; }
+.trend-a { background: var(--stone-pale); border-radius: 7px; padding: 0.6rem 0.75rem; }
+.trend-b { background: var(--green-pale); border: 1px solid #9EC99E; border-radius: 7px; padding: 0.6rem 0.75rem; }
+.trend-lab { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 0.25rem; }
+.trend-a .trend-lab { color: var(--stone); }
+.trend-b .trend-lab { color: var(--green-mid); }
+.trend-row div p { font-size: 0.78rem; line-height: 1.6; margin: 0; color: var(--text-dark); }
+.scsa-note { background: #FFF8E8; border-left: 3px solid var(--ochre-light);
+  padding: 0.6rem 0.85rem; border-radius: 0 7px 7px 0; margin: 0.6rem 0; }
+.scsa-note p { font-size: 0.78rem; color: var(--text-mid); line-height: 1.65; margin: 0; }
+.tech-item { padding: 0.45rem 0; border-bottom: 1px solid var(--stone-pale); }
+.tech-item:first-child { padding-top: 0; }
+.tech-item:last-child { border-bottom: none; padding-bottom: 0; }
+.tech-name { font-size: 0.75rem; font-weight: 600; color: var(--brown-dark); }
+.tech-cult { font-size: 0.68rem; color: var(--ochre); }
+.tech-desc { font-size: 0.67rem; color: var(--text-light); line-height: 1.5; margin-top: 0.12rem; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+
+<symbol id="g-chopper" viewBox="0 0 100 120">
+  <path d="M84,44 Q92,66 80,88 Q64,108 42,104 Q26,100 22,84 L33,75 L20,66 L31,55 L24,44 L37,37 L30,26 Q48,17 66,22 Q80,29 84,44 Z"
+        fill="#9A9184" stroke="#6E675C" stroke-width="2"/>
+  <path d="M33,75 L52,70 M31,55 L54,55 M37,37 L56,44" stroke="#6E675C" stroke-width="1.4" fill="none" opacity="0.75"/>
+  <path d="M60,34 Q74,50 70,74" stroke="#BDB5A6" stroke-width="1.6" fill="none" opacity="0.8"/>
+</symbol>
+
+<symbol id="g-flake" viewBox="0 0 100 120">
+  <path d="M34,20 L76,34 Q86,64 70,94 L44,104 Q26,66 34,20 Z"
+        fill="#BDB5A6" stroke="#6E675C" stroke-width="2"/>
+  <path d="M34,20 Q48,30 46,44" stroke="#6E675C" stroke-width="1.5" fill="none"/>
+  <path d="M40,26 L66,90" stroke="#9A9184" stroke-width="1.3" fill="none" opacity="0.8"/>
+</symbol>
+
+<symbol id="g-handaxe" viewBox="0 0 100 120">
+  <path d="M50,6 Q59,26 68,50 Q80,78 70,98 Q50,114 30,98 Q20,78 32,50 Q41,26 50,6 Z"
+        fill="#9A9184" stroke="#6E675C" stroke-width="2"/>
+  <path d="M50,14 L50,110" stroke="#6E675C" stroke-width="1.3" opacity="0.65"/>
+  <path d="M50,26 L34,40 M50,44 L28,56 M50,62 L26,74 M50,80 L30,92
+           M50,26 L66,40 M50,44 L72,56 M50,62 L74,74 M50,80 L70,92"
+        stroke="#6E675C" stroke-width="1.2" fill="none" opacity="0.6"/>
+</symbol>
+
+<symbol id="g-cleaver" viewBox="0 0 100 120">
+  <path d="M50,14 Q70,32 74,62 L76,100 L24,100 L26,62 Q30,32 50,14 Z"
+        fill="#9A9184" stroke="#6E675C" stroke-width="2"/>
+  <path d="M50,16 L50,98" stroke="#6E675C" stroke-width="1.3" opacity="0.6"/>
+  <path d="M50,34 L32,46 M50,56 L28,68 M50,78 L28,88
+           M50,34 L68,46 M50,56 L72,68 M50,78 L72,88"
+        stroke="#6E675C" stroke-width="1.2" fill="none" opacity="0.6"/>
+  <path d="M24,100 L76,100" stroke="#4A4238" stroke-width="3"/>
+</symbol>
+
+<symbol id="g-point" viewBox="0 0 100 120">
+  <path d="M50,12 L78,98 L22,98 Z" fill="#BDB5A6" stroke="#6E675C" stroke-width="2"/>
+  <path d="M50,14 L50,96" stroke="#6E675C" stroke-width="1.3" opacity="0.65"/>
+  <path d="M28,86 L36,80 M32,72 L40,68 M36,58 L44,55 M40,44 L46,42
+           M72,86 L64,80 M68,72 L60,68 M64,58 L56,55 M60,44 L54,42"
+        stroke="#6E675C" stroke-width="1.2" fill="none" opacity="0.7"/>
+  <path d="M22,98 L78,98" stroke="#6E675C" stroke-width="3"/>
+</symbol>
+
+<symbol id="g-laurel" viewBox="0 0 100 120">
+  <path d="M50,4 Q66,42 66,60 Q66,80 50,116 Q34,80 34,60 Q34,42 50,4 Z"
+        fill="#BDB5A6" stroke="#6E675C" stroke-width="2"/>
+  <path d="M50,8 L50,112" stroke="#6E675C" stroke-width="1.1" opacity="0.55"/>
+  <path d="M50,24 L36,34 M50,40 L32,50 M50,56 L32,66 M50,72 L34,82 M50,88 L38,96
+           M50,24 L64,34 M50,40 L68,50 M50,56 L68,66 M50,72 L66,82 M50,88 L62,96"
+        stroke="#6E675C" stroke-width="1" fill="none" opacity="0.6"/>
+</symbol>
+
+<symbol id="g-scraper" viewBox="0 0 100 120">
+  <path d="M26,26 L26,96 Q62,104 80,70 Q86,44 62,26 Z"
+        fill="#9A9184" stroke="#6E675C" stroke-width="2"/>
+  <path d="M62,26 Q80,42 80,64 M46,30 L46,92" stroke="#6E675C" stroke-width="1.2" fill="none" opacity="0.6"/>
+  <path d="M66,28 L70,22 M76,38 L82,34 M81,52 L88,50 M82,66 L89,68 M76,80 L82,86 M64,92 L68,99"
+        stroke="#6E675C" stroke-width="1.6" fill="none"/>
+</symbol>
+
+<symbol id="g-blade" viewBox="0 0 100 120">
+  <path d="M42,8 L58,10 L66,108 L36,106 Z" fill="#BDB5A6" stroke="#6E675C" stroke-width="2"/>
+  <path d="M45,12 L50,104 M55,12 L58,104" stroke="#6E675C" stroke-width="1.1" opacity="0.6"/>
+</symbol>
+
+<symbol id="g-burin" viewBox="0 0 100 120">
+  <path d="M40,14 L60,10 L52,26 L68,30 L70,108 L38,106 Z" fill="#BDB5A6" stroke="#6E675C" stroke-width="2"/>
+  <path d="M46,30 L50,102 M58,32 L62,102" stroke="#6E675C" stroke-width="1.1" opacity="0.6"/>
+  <path d="M60,10 L52,26 L68,30" stroke="#4A4238" stroke-width="2" fill="none"/>
+</symbol>
+
+<symbol id="g-harpoon" viewBox="0 0 100 120">
+  <path d="M50,8 L58,30 L58,104 L42,104 L42,30 Z" fill="#E4D8BC" stroke="#B9A987" stroke-width="2"/>
+  <path d="M58,36 L76,46 L58,48 Z M58,58 L76,68 L58,70 Z M58,80 L76,90 L58,92 Z"
+        fill="#E4D8BC" stroke="#B9A987" stroke-width="1.8"/>
+  <path d="M42,44 L26,54 L42,56 Z M42,66 L26,76 L42,78 Z"
+        fill="#E4D8BC" stroke="#B9A987" stroke-width="1.8"/>
+</symbol>
+
+<symbol id="g-needle" viewBox="0 0 100 120">
+  <path d="M48,110 L46,26 Q50,10 54,26 L52,110 Z" fill="#E4D8BC" stroke="#B9A987" stroke-width="2"/>
+  <ellipse cx="50" cy="30" rx="3.4" ry="6" fill="none" stroke="#B9A987" stroke-width="2"/>
+</symbol>
+
+<symbol id="g-bonepoint" viewBox="0 0 100 120">
+  <path d="M50,8 Q60,40 58,74 Q57,98 50,110 Q43,98 42,74 Q40,40 50,8 Z"
+        fill="#E4D8BC" stroke="#B9A987" stroke-width="2"/>
+  <path d="M50,18 L50,102" stroke="#B9A987" stroke-width="1.1" opacity="0.6"/>
+</symbol>
+
+<symbol id="g-hafted" viewBox="0 0 100 120">
+  <rect x="43" y="40" width="14" height="76" rx="3" fill="#8A5A22" stroke="#5C4A3A" stroke-width="1.6"/>
+  <path d="M50,4 L66,44 L34,44 Z" fill="#BDB5A6" stroke="#6E675C" stroke-width="2"/>
+  <path d="M50,6 L50,42" stroke="#6E675C" stroke-width="1.1" opacity="0.6"/>
+  <path d="M40,46 L60,50 M40,53 L60,57 M40,60 L60,64" stroke="#5C4A3A" stroke-width="2.4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="g-core" viewBox="0 0 100 120">
+  <path d="M24,42 Q30,20 52,16 Q76,14 84,38 Q90,64 76,86 Q58,104 38,96 Q20,86 22,64 Z"
+        fill="#9A9184" stroke="#6E675C" stroke-width="2"/>
+  <path d="M36,28 Q50,38 44,52 Q56,44 68,52 Q74,36 62,26 M32,62 Q46,68 44,82 Q58,74 70,80"
+        stroke="#6E675C" stroke-width="1.4" fill="none" opacity="0.75"/>
+  <ellipse cx="52" cy="58" rx="26" ry="22" fill="none" stroke="#6E675C" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.8"/>
+</symbol>
+
+</defs>
+</svg>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="nav-brand">ORIGINS</div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Discovery Map</a>
+    <a href="#">Timeline</a>
+    <a href="#">Species</a>
+    <a href="tool-cultures.html" class="active">Tool Cultures</a>
+    <a href="#">Evolutionary Trends</a>
+    <a href="#">Activities</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="species-header">
+  <div>
+    <div class="species-name" style="font-style:normal;">Tool Cultures</div>
+    <div class="species-sub">Syllabus point 8.3, hominid evolutionary trends</div>
+  </div>
+  <span class="syllabus-badge">&#9733; Syllabus content</span>
+</div>
+
+<!-- MAIN GRID -->
+<table class="main-grid" cellpadding="0" cellspacing="0">
+<tr>
+  <td class="col-left" style="width:260px;vertical-align:top;padding:1rem 0.5rem 1rem 1.5rem;">
+    <div class="panel" style="margin-bottom:1rem;">
+      <div class="panel-header">The sequence</div>
+      <div class="panel-body">
+      <div class="seq-rail">
+      <div class="seq-step"><span class="seq-dot"></span>
+        <div class="seq-name">1. Oldowan</div>
+        <div class="seq-sp">Homo habilis</div>
+        <div class="seq-meta">Pebble tools. Struck one stone against another. Stone only.</div>
+      </div>
+      <div class="seq-step"><span class="seq-dot"></span>
+        <div class="seq-name">2. Acheulean</div>
+        <div class="seq-sp">Homo erectus</div>
+        <div class="seq-meta">Bifacial hand axes. Flaked on both sides, symmetrical. Stone only.</div>
+      </div>
+      <div class="seq-step"><span class="seq-dot"></span>
+        <div class="seq-name">3. Mousterian</div>
+        <div class="seq-sp">Homo neanderthalensis</div>
+        <div class="seq-meta">Flake tools by the Levallois method. Stone, with bone, ivory and antler.</div>
+      </div>
+      <div class="seq-step"><span class="seq-dot"></span>
+        <div class="seq-name">4. Aurignacian</div>
+        <div class="seq-sp">Homo sapiens</div>
+        <div class="seq-meta">Blade tools and burins. The first bone and antler points.</div>
+      </div>
+      <div class="seq-step"><span class="seq-dot"></span>
+        <div class="seq-name">5. Solutrean</div>
+        <div class="seq-sp">Homo sapiens</div>
+        <div class="seq-meta">Laurel leaf points, finished by pressure flaking.</div>
+      </div>
+      <div class="seq-step"><span class="seq-dot"></span>
+        <div class="seq-name">6. Magdalenian</div>
+        <div class="seq-sp">Homo sapiens</div>
+        <div class="seq-meta">Barbed antler harpoons, eyed needles, small blades.</div>
+      </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">Manufacturing techniques</div>
+      <div class="panel-body">
+        <div class="tech-item">
+          <div class="tech-name">Simple percussion</div>
+          <div class="tech-cult">Oldowan</div>
+          <div class="tech-desc">One stone struck against another to chip off one or two flakes.</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-name">Bifacial flaking</div>
+          <div class="tech-cult">Acheulean</div>
+          <div class="tech-desc">Flaked on both faces until the tool is symmetrical.</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-name">Levallois method</div>
+          <div class="tech-cult">Mousterian</div>
+          <div class="tech-desc">The core is prepared first, then a flake of a predetermined shape is struck off and its edges trimmed.</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-name">Pressure flaking</div>
+          <div class="tech-cult">Solutrean</div>
+          <div class="tech-desc">Small flakes pressed off with a bone or antler point rather than struck. Also credited for the Mousterian.</div>
+        </div>
+      </div>
+    </div>
+  </td>
+  <td class="col-centre" style="vertical-align:top;padding:1rem 0.5rem;">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('overview', this)">Overview</button>
+      <button class="tab-btn" onclick="switchTab('oldowan', this)">Oldowan</button>
+      <button class="tab-btn" onclick="switchTab('acheulean', this)">Acheulean</button>
+      <button class="tab-btn" onclick="switchTab('mousterian', this)">Mousterian</button>
+      <button class="tab-btn" onclick="switchTab('aurignacian', this)">Aurignacian</button>
+      <button class="tab-btn" onclick="switchTab('solutrean', this)">Solutrean</button>
+      <button class="tab-btn" onclick="switchTab('magdalenian', this)">Magdalenian</button>
+    </div>
+
+    <div id="tab-overview" class="tab-content active">
+      <div class="content-panel">
+        <h3>What is a tool culture?</h3>
+        <p>A tool culture is a set of stone and other tools that share a way of being made, a range of shapes and a range of uses, and that is found with a particular hominin species. Four tool cultures are named in the course, one for each of the four <em>Homo</em> species that made them.</p>
+        <p>The syllabus asks for the <strong>trends</strong> across these four cultures rather than for each one in isolation. Its wording is that tool use "provides important insight into the evolution of the human cognitive abilities and lifestyles", and that trends are seen "in the changes in manufacturing techniques and the materials used". Everything on this page is arranged around those two things: what the tools were made of, and how they were made.</p>
+        <div class="scsa-note"><p>A tool is any object used to perform a task. An <strong>artefact</strong> is the word for a human made object found with the remains of a <em>Homo</em> species. The 2021 examination asked for that term specifically.</p></div>
+      </div>
+      <div class="content-panel">
+        <h3>Before the tool cultures</h3>
+        <p>The earliest tool use was not manufacture. Australopithecines are thought to have picked up sticks and stones from the local environment and used them as they were, without shaping them. Objects used in that way leave no archaeological trace, because an unmodified stone looks exactly like every other stone.</p>
+        <p>This is why the first tool culture belongs to <em>Homo habilis</em>. It is the first hominin known to have <strong>produced</strong> tools rather than simply used them.</p>
+        <div class="scsa-note"><p>Do not say australopithecines made Oldowan tools. The 2021 examination stem states the position clearly: the earliest use of tools would have been by australopithecines using sticks and stones picked up from the local environment, whereas <em>Homo habilis</em> is the first hominin known to have produced tools.</p></div>
+      </div>
+      <div class="content-panel">
+        <h3>The sequence</h3>
+        <p>The four cultures run in a fixed order, and the order is examinable. Each culture begins with the species named beside it, but cultures overlap in time and do not stop the moment the next one starts.</p>
+        <div class="tool-fig"><svg viewBox="0 0 416 150" width="100%" style="max-width:640px;display:block;margin:0 auto;" role="img"><use href="#g-chopper" x="2" y="4" width="100" height="120"/><text x="52" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Oldowan</text><use href="#g-handaxe" x="106" y="4" width="100" height="120"/><text x="156" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Acheulean</text><use href="#g-point" x="210" y="4" width="100" height="120"/><text x="260" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Mousterian</text><use href="#g-blade" x="314" y="4" width="100" height="120"/><text x="364" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Upper Palaeolithic</text></svg><div class="tool-fig-cap">The signature tool of each culture. Pebble tool, bifacial hand axe, flake point, blade.</div></div>
+        <p>Stated as tool types rather than culture names, which is how the multiple choice questions put it, the order is <strong>pebble tools, bifacial hand axes, flake tools, blades</strong>.</p>
+      </div>
+      <div class="content-panel">
+        <h3>The three trends</h3>
+        <p>Three trends run across the four cultures. Each one has a consequence for the way hominins lived, and questions on trends almost always ask for the trend <strong>and</strong> what it tells us about lifestyle. One mark each. Learn them as pairs.</p>
+        <div class="trend-row">
+          <div class="trend-a"><div class="trend-lab">Trend, materials</div><p>A greater variety of materials is used, from stone only to bone, antler, ivory and wood.</p></div>
+          <div class="trend-b"><div class="trend-lab">What it tells us</div><p>Hominins used resources more effectively, used a wider variety of resources, and understood how to use their environment better.</p></div>
+        </div>
+        <div class="trend-row">
+          <div class="trend-a"><div class="trend-lab">Trend, workmanship</div><p>A greater number of blows is used, with increased workmanship, more time put into production and greater complexity.</p></div>
+          <div class="trend-b"><div class="trend-lab">What it tells us</div><p>Hominins completed more complex jobs, did finer work, and had time available to create.</p></div>
+        </div>
+        <div class="trend-row">
+          <div class="trend-a"><div class="trend-lab">Trend, specialisation</div><p>Tools became more specialised, tools were used to make other tools, and tools were hafted onto handles and shafts.</p></div>
+          <div class="trend-b"><div class="trend-lab">What it tells us</div><p>Hominins had more specialised roles within their communities.</p></div>
+        </div>
+        <p>A fourth way of putting the same point, used in 2024, is that early sets of tools are <strong>generic</strong>, meaning one shape does every job, while later sets show <strong>variety</strong>, many different types of tool for different jobs. A variety of tools implies a variety of roles.</p>
+      </div>
+      <div class="content-panel">
+        <h3>The Upper Palaeolithic: one culture or three?</h3>
+        <p>The tools of <em>Homo sapiens</em> are grouped together as the Upper Palaeolithic, and within that period three named cultures follow one another: the <strong>Aurignacian</strong>, then the <strong>Solutrean</strong>, then the <strong>Magdalenian</strong>. They share a species, a reliance on blade tools and a wide use of bone, antler and ivory, and they differ in the point styles and the specialised equipment that define each one.</p>
+        <p>Because they share so much, examination questions about <em>H. sapiens</em> tools are usually answered from the shared picture. The uses and lifestyle marks below are credited for Upper Palaeolithic tools as a whole rather than for one of the three cultures.</p>
+        <div class="tool-fig"><svg viewBox="0 0 520 150" width="100%" style="max-width:640px;display:block;margin:0 auto;" role="img"><use href="#g-blade" x="2" y="4" width="100" height="120"/><text x="52" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Blade</text><use href="#g-burin" x="106" y="4" width="100" height="120"/><text x="156" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Burin</text><use href="#g-needle" x="210" y="4" width="100" height="120"/><text x="260" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Needle</text><use href="#g-harpoon" x="314" y="4" width="100" height="120"/><text x="364" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Harpoon</text><use href="#g-hafted" x="418" y="4" width="100" height="120"/><text x="468" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Hafted point</text></svg><div class="tool-fig-cap">Upper Palaeolithic tool types, in stone, bone and antler, some hafted onto wooden shafts.</div></div>
+        <p>Six uses are credited, each paired with what it implies. Needles for sewing means they wore clothes. Weapons for hunting means they ate meat. Barbed spears and arrowheads attached to wood means spear hunting. Harpoons means fishing. Ornamental pieces and carvings on tools means art, figurines, jewellery, story telling and ritual beliefs. Burin tools used to make other tools means the use of alternative tool materials such as bone, ivory and antler.</p>
+      </div>
+      <div class="content-panel">
+        <h3>Tools and the brain</h3>
+        <p>The link between tools and cognitive ability is made at the level of the hominin group rather than for any one species. Bipedalism freed the hands to carry infants, tools and food. Manufacturing a tool requires mental dexterity and problem solving ability, and tools became more complex in their size, manufacture and use. Efficient tools meant a better ability to hunt for meat, and the increase in protein provided the energy required to support a larger brain.</p>
+        <p>A larger brain may in turn have contributed to more cooperation and communication, and speech and language are thought to have evolved as cranial capacity increased.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>Learn the four pairings cold: Oldowan and <em>H. habilis</em>, Acheulean and <em>H. erectus</em>, Mousterian and <em>H. neanderthalensis</em>, Upper Palaeolithic and <em>H. sapiens</em>. Almost every tool question begins by testing one of them.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>For a trend question, always give the trend <strong>and</strong> the lifestyle consequence. Half the marks are for the consequence, and an answer that only lists trends can score at most half.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>Tool cultures are never given dates in the marking keys. Dates on this page are for your own sense of the sequence. What is examined is the <strong>order</strong>, not the years.</div>
+        <div class="exam-tip"><span class="tip-num">4</span>Both spellings appear in the examinations. Acheulean is used in 2017, 2019 and 2024, and Acheulian in 2025. Either is accepted.</div>
+        <div class="exam-tip"><span class="tip-num">5</span>The umbrella term Upper Palaeolithic has never appeared in an examination. The three named cultures within it have. If a question asks you to name a tool culture for <em>H. sapiens</em>, name one of the three.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2025 Exam Q26</strong><br><strong>Q:</strong> Which of the following lists correctly the development of stone tools manufactured by humans, from earliest to most recent? (a) pebble tools, bifacial handaxes, flake tools, blades (b) microliths, handaxes, flake tools, blades (c) pebble tools, flake tools, hafted tools, handaxes (d) blades, choppers, spear points, handaxes<br><strong>A:</strong> (a) pebble tools, bifacial handaxes, flake tools, blades.</div>
+        <div class="past-exam-entry"><strong>2025 Exam Q30</strong><br><em style="color:var(--text-mid);">The question referred to a diagram of various stone tools, which is not reproduced here.</em><br><strong>Q:</strong> Which of the following identifies the tool culture and the hominin species associated with these types of tools? (a) Oldowan and <em>Homo habilis</em> (b) Acheulian and <em>Homo erectus</em> (c) Aurignacian and <em>Homo neanderthalensis</em> (d) Magdalenian and <em>Homo sapiens</em><br><strong>A:</strong> (b) Acheulian and <em>Homo erectus</em>. Note that option (a) is a true pairing offered as a wrong answer, because the diagram shown was of hand axes. Option (c) is the trap: the Aurignacian belongs to <em>H. sapiens</em>, never to Neanderthals.</div>
+        <div class="past-exam-entry"><strong>2021 Exam Q29</strong><br><strong>Q:</strong> Human-made objects associated with the remains of <em>Homo</em> species are best described as (a) tools (b) artefacts (c) artifices (d) fossils<br><strong>A:</strong> (b) artefacts.</div>
+        <div class="past-exam-entry"><strong>2020 Exam Q38</strong><br><em style="color:var(--text-mid);">Tools created by some of the hominins mentioned in a phylogenetic tree were shown. The tools are not drawn to scale. The tool sets have been redrawn below.</em><br>        <div class="exam-fig"><svg viewBox="0 0 712 170" width="100%" style="display:block;margin:0 auto;" role="img"><use href="#g-chopper" x="11" y="6" width="78" height="94"/><use href="#g-flake" x="89" y="6" width="78" height="94"/><text x="89.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">IV</text><line x1="178" y1="6" x2="178" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-handaxe" x="189" y="6" width="78" height="94"/><use href="#g-cleaver" x="267" y="6" width="78" height="94"/><text x="267.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">I</text><line x1="356" y1="6" x2="356" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-point" x="367" y="6" width="78" height="94"/><use href="#g-scraper" x="445" y="6" width="78" height="94"/><text x="445.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">II</text><line x1="534" y1="6" x2="534" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-laurel" x="545" y="6" width="78" height="94"/><use href="#g-blade" x="623" y="6" width="78" height="94"/><text x="623.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">III</text></svg><div class="tool-fig-cap">Redrawn tool sets for the 2020 sequencing question. These are original drawings, not the examination images.</div></div><strong>Q:</strong> Rearrange the tools I to IV in order from oldest to youngest.<br><strong>A:</strong> IV, I, II, III.</div>
+        <div class="past-exam-entry"><strong>2020 Exam Q38</strong><br><strong>Q:</strong> The tools display a trend in tool manufacture. State this trend and what it implies about the changes to hominin lifestyle.<br><strong>A:</strong> Greater workmanship, a greater number of blows made in construction, or greater design complexity. Hominids completed more specialised tasks, did finer work, or had more time to create.</div>
+        <div class="past-exam-entry"><strong>2019 Exam Q31</strong><br><strong>Q:</strong> State two trends that are evident in the manufacturing techniques of tools from early hominids to modern humans and outline what these trends indicate about changes in hominid lifestyle.<br><strong>A:</strong> One mark for each trend and one for each lifestyle consequence. Greater variety of materials used, from stone only to bone, antler, ivory and wood, meaning hominids used resources more effectively. Greater number of blows, increased workmanship, more time in tool production, meaning hominids completed more complex jobs, did finer work or had time to create. Tools became more specialised, tools used to make tools, hafted tools, meaning hominids had more specialised roles within communities.</div>
+        <div class="past-exam-entry"><strong>2023 Exam Q35</strong><br><strong>Q:</strong> Outline two trends that are evident in the manufacturing techniques of tools from early hominins to modern <em>Homo sapiens</em> and state what each of these trends indicate about changes in lifestyle.<br><strong>A:</strong> The same three trend and consequence pairs, two of them, at two marks each.</div>
+        <div class="past-exam-entry"><strong>2022 Exam Q39</strong><br><strong>Q:</strong> Explain the relationship between bipedalism, increasing cranial capacity and tool use seen in the hominin group.<br><strong>A:</strong> Any eight of: bipedalism freed the hands to carry infants, tools and food; manufacture of tools requires mental dexterity and problem solving abilities; tools became more complex in size, manufacture and use; efficient tools meant a better ability to hunt for meat; increased protein provided the energy required to support a larger brain; a larger brain may have contributed to more cooperation and communication; bipedalism may have led to overall behavioural changes; behavioural changes may have impacted cranial development and frontal lobe size; speech and language evolved due to increased cranial capacity.</div>
+        <div class="past-exam-entry"><strong>2016 Exam Q37</strong><br><em style="color:var(--text-mid);">The question referred to five groups of tool diagrams, not drawn to scale. The groups have been redrawn below.</em><br>        <div class="exam-fig"><svg viewBox="0 0 968 170" width="100%" style="display:block;margin:0 auto;" role="img"><use href="#g-handaxe" x="11" y="6" width="78" height="94"/><use href="#g-cleaver" x="89" y="6" width="78" height="94"/><text x="89.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">A</text><line x1="178" y1="6" x2="178" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-harpoon" x="189" y="6" width="78" height="94"/><use href="#g-needle" x="267" y="6" width="78" height="94"/><text x="267.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">B</text><line x1="356" y1="6" x2="356" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-point" x="367" y="6" width="78" height="94"/><use href="#g-scraper" x="445" y="6" width="78" height="94"/><text x="445.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">C</text><line x1="534" y1="6" x2="534" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-chopper" x="545" y="6" width="78" height="94"/><use href="#g-flake" x="623" y="6" width="78" height="94"/><text x="623.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">D</text><line x1="712" y1="6" x2="712" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-blade" x="723" y="6" width="78" height="94"/><use href="#g-burin" x="801" y="6" width="78" height="94"/><use href="#g-hafted" x="879" y="6" width="78" height="94"/><text x="840.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">E</text></svg><div class="tool-fig-cap">Redrawn tool groups for the 2016 table question. These are original drawings, not the examination images.</div></div><strong>Q:</strong> Complete the table by identifying which labels A, B, C, D and/or E match the statements below: oldest group of tools; tools made only by <em>Homo sapiens</em>; tools made only of stone or rock; classified as Mousterian tool culture.<br><strong>A:</strong> Oldest group of tools, D. Tools made only by <em>Homo sapiens</em>, B and E. Tools made only of stone or rock, A, C and D. Classified as Mousterian tool culture, C.</div>
+        <div class="past-exam-entry"><strong>2016 Exam Q37</strong><br><strong>Q:</strong> The tools labelled E show a great variety in size and shape. Suggest two ways in which the hominid who made these tools might have used them and what that tool culture implies about the way they lived.<br><strong>A:</strong> One mark for the use and one for the lifestyle. Needles for sewing, so they wore clothes. Weapons for hunting, so they ate meat. Barbed spears or arrowheads attached to wood, so they hunted with spears. Harpoons, so they fished. Ornamental pieces or carvings on tools, so they made art, figurines and jewellery, told stories and held ritual beliefs. Burin tools used to make other tools, so they used alternative tool materials such as bone, ivory and antler.</div>
+        <div class="past-exam-entry"><strong>2019 Exam Q31</strong><br><em style="color:var(--text-mid);">The question referred to three groups of tools made by hominid species other than <em>H. habilis</em>, labelled X, Y and Z, not drawn to scale. The groups have been redrawn below.</em><br>        <div class="exam-fig"><svg viewBox="0 0 612 170" width="100%" style="display:block;margin:0 auto;" role="img"><use href="#g-blade" x="11" y="6" width="78" height="94"/><use href="#g-hafted" x="89" y="6" width="78" height="94"/><use href="#g-harpoon" x="167" y="6" width="78" height="94"/><text x="128.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">X</text><line x1="256" y1="6" x2="256" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-handaxe" x="267" y="6" width="78" height="94"/><use href="#g-cleaver" x="345" y="6" width="78" height="94"/><text x="345.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">Y</text><line x1="434" y1="6" x2="434" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-point" x="445" y="6" width="78" height="94"/><use href="#g-hafted" x="523" y="6" width="78" height="94"/><text x="523.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">Z</text></svg><div class="tool-fig-cap">Redrawn tool groups for the 2019 table question. These are original drawings, not the examination images.</div></div><strong>Q:</strong> Complete the table using the diagrams: this tool culture came immediately after the Oldowan culture; the most recent tools; these tools are commonly referred to as hand axes; these tools were often hafted.<br><strong>A:</strong> Came immediately after the Oldowan, Y. The most recent tools, X. Commonly referred to as hand axes, Y. Often hafted, X and Z.</div>
+        <div class="past-exam-entry"><strong>2024 Exam Q36</strong><br><em style="color:var(--text-mid);">Six numbered sets of tool diagrams were shown, in no particular order or sequence. The sets have been redrawn below.</em><br>        <div class="exam-fig"><svg viewBox="0 0 612 170" width="100%" style="display:block;margin:0 auto;" role="img"><use href="#g-point" x="11" y="6" width="78" height="94"/><use href="#g-scraper" x="89" y="6" width="78" height="94"/><text x="89.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">1</text><line x1="178" y1="6" x2="178" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-blade" x="189" y="6" width="78" height="94"/><use href="#g-burin" x="267" y="6" width="78" height="94"/><use href="#g-needle" x="345" y="6" width="78" height="94"/><text x="306.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">2</text><line x1="434" y1="6" x2="434" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-chopper" x="445" y="6" width="78" height="94"/><use href="#g-flake" x="523" y="6" width="78" height="94"/><text x="523.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">3</text></svg><div class="tool-fig-cap">Sets 1 to 3.</div></div>        <div class="exam-fig"><svg viewBox="0 0 534 170" width="100%" style="display:block;margin:0 auto;" role="img"><use href="#g-hafted" x="11" y="6" width="78" height="94"/><use href="#g-harpoon" x="89" y="6" width="78" height="94"/><text x="89.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">4</text><line x1="178" y1="6" x2="178" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-bonepoint" x="189" y="6" width="78" height="94"/><use href="#g-needle" x="267" y="6" width="78" height="94"/><text x="267.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">5</text><line x1="356" y1="6" x2="356" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-handaxe" x="367" y="6" width="78" height="94"/><use href="#g-cleaver" x="445" y="6" width="78" height="94"/><text x="445.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">6</text></svg><div class="tool-fig-cap">Sets 4 to 6. Original drawings, not the examination images.</div></div><strong>Q:</strong> State the numbers of the three sets of tools associated with early <em>Homo sapiens</em> or Cro-Magnon man.<br><strong>A:</strong> Sets 2, 4 and 5.</div>
+        <div class="past-exam-entry"><strong>2024 Exam Q36</strong><br><strong>Q:</strong> Scientists stated that comparison of Set 2 and Set 3 provided evidence that hominins developed more specialised roles within their communities over time. Explain how this conclusion could be made from these tools.<br><strong>A:</strong> Set 3 is more primitive while Set 2 is advanced. Set 3 tools are generic while Set 2 shows variety, many different types of tool. A variety of tools suggests different roles or uses.</div>
+      </div>
+    </div>
+
+    <div id="tab-oldowan" class="tab-content">
+      <div class="content-panel">
+        <h3>The Oldowan</h3>
+        <p>The Oldowan is the first tool culture, made by <em>Homo habilis</em>. Its tools are also called <strong>pebble tools</strong>, and either name is accepted. They are the earliest manufactured stone tools known, first found at Olduvai Gorge, from which the culture takes its name.</p>
+        <p>The whole culture is made of stone only. Nothing in the Oldowan is made of bone, antler, ivory or wood, and nothing is hafted onto a handle.</p>
+        <div class="tool-fig"><svg viewBox="0 0 312 150" width="100%" style="max-width:640px;display:block;margin:0 auto;" role="img"><use href="#g-core" x="2" y="4" width="100" height="120"/><text x="52" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Core</text><use href="#g-chopper" x="106" y="4" width="100" height="120"/><text x="156" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Chopper</text><use href="#g-flake" x="210" y="4" width="100" height="120"/><text x="260" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Flake</text></svg><div class="tool-fig-cap">An Oldowan core, a chopper with a flaked working edge, and a struck flake. Both the core and the flake were used as tools.</div></div>
+      </div>
+      <div class="content-panel">
+        <h3>How they were made</h3>
+        <p>One stone was struck against another to chip off one or two pieces, leaving a sharp cutting edge. This is <strong>simple percussion</strong>, and it is the least worked of the four techniques.</p>
+        <p>Both parts were used. The core, the stone that pieces were struck from, became a chopper with a jagged working edge. The flakes that came off were themselves sharp and were used for cutting.</p>
+        <div class="scsa-note"><p>The 2024 examination gave the model wording: simple percussion, whereby stones were struck against another to produce flakes. The wrong options in that question were the techniques of the three later cultures, so knowing what the Oldowan is <strong>not</strong> is as useful as knowing what it is.</p></div>
+      </div>
+      <div class="content-panel">
+        <h3>Uses and what they tell us</h3>
+        <p>Four uses are credited, and no others. Learn all four, because a question may ask for two.</p>
+        <ul>
+          <li>Chopping up meat, butchering and skinning carcasses.</li>
+          <li>Digging up edible roots and plants.</li>
+          <li>Crushing and grinding tough plant material.</li>
+          <li>Breaking open animal bones, to reach the marrow.</li>
+        </ul>
+        <p>Taken together these say that <em>H. habilis</em> was processing both meat and plant food, and was getting at food that an animal without tools could not reach. Bone marrow in particular is only available to something that can break a bone open.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>Two names are accepted for this culture: <strong>Oldowan</strong> or <strong>pebble tools</strong>. Give either.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>For manufacture, two marks. First, stones, pebbles or rocks. Second, one or two pieces chipped off by striking, by flaking rocks together, or by striking one stone with another.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>Say that the core <strong>and</strong> the flake were both used. It is the simplest way to show you understand what percussion produces.</div>
+        <div class="exam-tip"><span class="tip-num">4</span>The Oldowan has never been given a date in a marking key. If you want one for your own sense of the sequence, the earliest Oldowan tools are around 2.6 million years old.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2019 Exam Q31</strong><br><em style="color:var(--text-mid);">The question referred to a diagram representing tools from the Oldowan tool culture.</em><br><strong>Q:</strong> Name the hominid species said to have made and used these tools.<br><strong>A:</strong> <em>Homo habilis</em>.</div>
+        <div class="past-exam-entry"><strong>2019 Exam Q31</strong><br><strong>Q:</strong> Identify two ways in which hominids would have used these tools in their daily lives.<br><strong>A:</strong> Any two of: chopping up meat, butchering or skinning; digging up edible roots and plants; crushing or grinding tough plant materials; breaking open animal bones.</div>
+        <div class="past-exam-entry"><strong>2021 Exam Q37</strong><br><em style="color:var(--text-mid);">It is thought that the earliest use of tools would have been by australopithecines using sticks and stones picked up from the local environment, whereas <em>Homo habilis</em> is the first hominin known to have produced tools.</em><br><strong>Q:</strong> What is the name given to the tools made by <em>Homo habilis</em>?<br><strong>A:</strong> Oldowan or pebble tools.</div>
+        <div class="past-exam-entry"><strong>2021 Exam Q37</strong><br><strong>Q:</strong> Describe how the tools identified in part (b)(i) were made.<br><strong>A:</strong> Stones, pebbles or rocks, with one or two pieces chipped off by striking, flaking rocks together, or striking one stone with another.</div>
+        <div class="past-exam-entry"><strong>2024 Exam Q15</strong><br><em style="color:var(--text-mid);">Students in a Year 12 Human Biology class used different rock types to manufacture stone tools in the same ways as ancient hominins, aiming to create the most efficient cutting tools.</em><br><strong>Q:</strong> Students were taught to use a method of stone tool manufacture which most closely matched that used in the Oldowan stone tool culture. The best description of this method is (a) simple percussion, whereby stones were struck against another to produce flakes (b) systematic removal of elongated flakes from a prepared core (c) pressure technique in which a pointed tool is used to remove small flakes along the edges of a core (d) a prepared core is reworked, using flaking techniques to create a bifacial tool<br><strong>A:</strong> (a) simple percussion, whereby stones were struck against another to produce flakes.</div>
+      </div>
+    </div>
+
+    <div id="tab-acheulean" class="tab-content">
+      <div class="content-panel">
+        <h3>The Acheulean</h3>
+        <p>The Acheulean is the tool culture of <em>Homo erectus</em>, and it follows immediately after the Oldowan. Its defining tool is the <strong>hand axe</strong>, a large teardrop shaped tool worked on both faces.</p>
+        <p>It is still a stone only culture. What changes from the Oldowan is not the material but the amount of work: an Acheulean hand axe is shaped deliberately to a symmetrical form, which takes many more blows and requires the maker to hold an intended shape in mind before starting.</p>
+        <div class="tool-fig"><svg viewBox="0 0 208 150" width="100%" style="max-width:540.8000000000001px;display:block;margin:0 auto;" role="img"><use href="#g-handaxe" x="2" y="4" width="100" height="120"/><text x="52" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Hand axe</text><use href="#g-cleaver" x="106" y="4" width="100" height="120"/><text x="156" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Cleaver</text></svg><div class="tool-fig-cap">The Acheulean hand axe, teardrop shaped and flaked on both faces, and the cleaver, which has a broad straight cutting edge.</div></div>
+      </div>
+      <div class="content-panel">
+        <h3>How they were made</h3>
+        <p>A core is worked on <strong>both</strong> sides, which is what bifacial means, removing flakes all the way around until the tool is symmetrical. The result is larger and more robust than anything in the Oldowan, and the same tool serves as an all purpose cutting, chopping and butchering implement.</p>
+        <p>Four features identify an Acheulean tool, and a question may ask for two of them.</p>
+        <ul>
+          <li>It shows bifacial flaking, meaning it is flaked on both sides.</li>
+          <li>It is a symmetrical cutting tool.</li>
+          <li>It is a hand axe, teardrop in shape.</li>
+          <li>It is larger and more robust than earlier tools.</li>
+        </ul>
+      </div>
+      <div class="content-panel">
+        <h3>Uses and what they tell us</h3>
+        <p>No use has ever been credited for an Acheulean tool in a marking key, which is worth knowing so that you are not caught out expecting one. The hand axe is a general purpose tool, and the uses credited for hand axes elsewhere are chopping animal meat and making other tools.</p>
+        <p>What the Acheulean does show is planning. A symmetrical bifacial tool cannot be made by chance. The maker has to work the stone towards a shape that does not exist until the last flake comes off, which is a considerably more demanding task than striking one flake from a pebble.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>The Acheulean is <em>H. erectus</em>. It is also the first culture found outside Africa, because <em>H. erectus</em> is the first hominin to leave Africa.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>For an identification question the safest two features are <strong>bifacial flaking</strong> and <strong>symmetrical</strong>, because both are in the marking key and neither belongs to any other culture.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>A hand axe is not proof of the Acheulean. The marking keys also credit hand axes within the Mousterian, in both 2018 and 2025. Use the shape and the bifacial working, not the name of the tool, to identify the culture.</div>
+        <div class="exam-tip"><span class="tip-num">4</span>The Acheulean has never been dated in a marking key either. For your own sense of the sequence, hand axes appear from about 1.7 million years ago.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2017 Exam Q38</strong><br><em style="color:var(--text-mid);">A limestone cave contained fossil specimens and artefacts dated from 100 000 to 2 million years ago. In layer 3, a bifacial hand axe was discovered. No image is reproduced here.</em><br><strong>Q:</strong> What name is given to this type of tool?<br><strong>A:</strong> Acheulean, hand axe, or bifaced hand axe.</div>
+        <div class="past-exam-entry"><strong>2017 Exam Q38</strong><br><strong>Q:</strong> Who is the first hominid believed to have made this type of tool?<br><strong>A:</strong> <em>Homo erectus</em>.</div>
+        <div class="past-exam-entry"><strong>2024 Exam Q36</strong><br><em style="color:var(--text-mid);">Set 6 of the six tool sets shown in that question. It has been redrawn below.</em><br>        <div class="exam-fig"><svg viewBox="0 0 178 170" width="100%" style="display:block;margin:0 auto;" role="img"><use href="#g-handaxe" x="11" y="6" width="78" height="94"/><use href="#g-cleaver" x="89" y="6" width="78" height="94"/><text x="89.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">Set 6</text></svg><div class="tool-fig-cap">Original drawing, not the examination image.</div></div><strong>Q:</strong> Outline two features evident in the tools of Set 6 that indicate they are examples of Acheulean tool culture.<br><strong>A:</strong> Any two of: shows bifacial flaking or is flaked on both sides; symmetrical cutting tools; the tools are hand axes, teardrop in shape; larger or more robust tools.</div>
+        <div class="past-exam-entry"><strong>2020 Exam Q38</strong><br><strong>Q:</strong> Identify which tool was most likely to be made first by <em>Homo erectus</em>.<br><strong>A:</strong> Tool I, the hand axe. It is the second oldest of the four sets, immediately after the Oldowan.</div>
+      </div>
+    </div>
+
+    <div id="tab-mousterian" class="tab-content">
+      <div class="content-panel">
+        <h3>The Mousterian</h3>
+        <p>The Mousterian is the tool culture of <em>Homo neanderthalensis</em>. It is also accepted under the name <strong>flake tools</strong>, because its tools are made from flakes struck off a prepared core rather than from the core itself.</p>
+        <p>Two things change at this point in the sequence. Materials widen beyond stone for the first time, to bone, ivory and antler, and later keys also credit teeth and shells. And tools begin to be <strong>hafted</strong>, fitted to handles and shafts, which is what makes a thrusting spear possible.</p>
+        <div class="tool-fig"><svg viewBox="0 0 416 150" width="100%" style="max-width:640px;display:block;margin:0 auto;" role="img"><use href="#g-core" x="2" y="4" width="100" height="120"/><text x="52" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Prepared core</text><use href="#g-point" x="106" y="4" width="100" height="120"/><text x="156" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Point</text><use href="#g-scraper" x="210" y="4" width="100" height="120"/><text x="260" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Scraper</text><use href="#g-hafted" x="314" y="4" width="100" height="120"/><text x="364" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Hafted spear</text></svg><div class="tool-fig-cap">A prepared Levallois core, a retouched point, a side scraper, and a point hafted onto a wooden shaft.</div></div>
+      </div>
+      <div class="content-panel">
+        <h3>How they were made: the Levallois method</h3>
+        <p>The Mousterian is the first culture in which the shape of the finished tool is decided <strong>before</strong> the flake is struck. The core is prepared first, so that a single blow releases a flake of a predetermined shape. Four steps carry marks.</p>
+        <ul>
+          <li>Start with a large core or block of stone.</li>
+          <li>Prepare or work the core first, shaping its surface.</li>
+          <li>Strike large oval flakes from the worked core, by the percussion method. This is the Levallois technique.</li>
+          <li>Trim the edges by flaking off pieces around the outline of the flake. Pressure flaking may be used for the finer work.</li>
+        </ul>
+        <div class="scsa-note"><p>Levallois is the one technique name other than percussion that the marking keys use. Naming it is worth a mark on its own, but only if you also describe the preparation of the core, because that is what the method actually means.</p></div>
+      </div>
+      <div class="content-panel">
+        <h3>Tool types</h3>
+        <p>Seven types are credited. A question asking you to describe what Neanderthal tools looked like will want the culture name and any three of them.</p>
+        <ul>
+          <li>Flakes with reworked or sharpened edges.</li>
+          <li>Blade tools.</li>
+          <li>Core and scraper tools.</li>
+          <li>Hand axes.</li>
+          <li>Some with handles, that is, hafted.</li>
+          <li>Spear points.</li>
+          <li>Made of bone, ivory or antler.</li>
+        </ul>
+        <p>The 2025 key adds knives and burins to this list, and gives the materials as teeth, shells and bones.</p>
+      </div>
+      <div class="content-panel">
+        <h3>Uses and what they tell us</h3>
+        <p>The Mousterian is the culture where uses start to be specific to tool types rather than general. Each pairing below is credited.</p>
+        <ul>
+          <li>Spears and hafted points, to hunt larger animals. This means meat eating and organised hunting.</li>
+          <li>Scrapers and knives, to prepare animal hides. This means clothing.</li>
+          <li>Scrapers, blades and hand axes, to remove meat from animal bones and to build shelters.</li>
+          <li>Burins, to engrave and carve materials and to produce other tools.</li>
+          <li>A wider range of materials, teeth, shells and bones, to make more specialised tools.</li>
+        </ul>
+        <p>The conclusion drawn from all of this is that Neanderthals had specialised roles within their communities, because a set of different tools for different jobs implies different people doing different jobs.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>Two names are accepted: <strong>Mousterian</strong> or <strong>flake tools</strong>.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>For manufacture, name the Levallois method and then describe it: a large core is prepared first, large oval flakes are struck from it by percussion, and the edges are then trimmed by flaking around the outline of the flake.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>The Mousterian is where hafting first appears in the sequence, and hafting is credited for both the Mousterian and the Upper Palaeolithic. It is never credited for the Oldowan or the Acheulean.</div>
+        <div class="exam-tip"><span class="tip-num">4</span>There is one inconsistency in the papers worth knowing. The 2016 table classifies the Mousterian tool among those made only of stone or rock, while the 2018 and 2025 keys credit bone, ivory, antler, teeth and shells. If a question offers a choice, follow the wording of that question.</div>
+        <div class="exam-tip"><span class="tip-num">5</span>For a ten mark question on Neanderthal tools, work through the tool types in turn and give each one a use and a consequence. Breadth across several tool types scores better than depth on one.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2018 Exam Q42</strong><br><em style="color:var(--text-mid);">While fossil and artefact finds are limited, they can be used to show changes in both anatomy and culture.</em><br><strong>Q:</strong> Name and describe what tools found near <em>Homo neanderthalensis</em> bones would have looked like.<br><strong>A:</strong> Mousterian tools or flake tools, then any three of: flakes with reworked or sharpened edges; blade tools; core or scraper tools; hand axe; some had handles or hafting; spear points; made of bone, ivory or antler.</div>
+        <div class="past-exam-entry"><strong>2018 Exam Q42</strong><br><strong>Q:</strong> State how the tools would have been manufactured and what they would imply about the way in which <em>Homo neanderthalensis</em> lived.<br><strong>A:</strong> Levallois method, a large flake removed from a stone core and then reworked, prepared stone then flaked, or pressure flaking. Then any three of: spears used to hunt large animals, so they ate meat; scrapers could have been used to create clothing; hand axes may have been used for chopping animal meat; hand axes may have been used to create other tools; tools were used to make other tools.</div>
+        <div class="past-exam-entry"><strong>2022 Exam Q40</strong><br><em style="color:var(--text-mid);">A palaeontologist came across a tool artefact during a dig at a location in Europe. A photograph and sketch of the tool were recorded, with a scale of 8 cm. No image is reproduced here.</em><br><strong>Q:</strong> Identify the tool culture and the name of the hominin that produced the tool. Describe how the tool would have been manufactured.<br><strong>A:</strong> Mousterian, and <em>Homo neanderthalensis</em>. Manufacture: made of stone; starts with a large core or block of stone; large oval flakes struck from worked cores, by the percussion method or Levallois technique; edges trimmed by flaking off pieces around the outline of the flake.</div>
+        <div class="past-exam-entry"><strong>2023 Exam Q35</strong><br><em style="color:var(--text-mid);">The question referred to a set of tool diagrams which are not reproduced here.</em><br><strong>Q:</strong> Determine which of the tools shown is the best example of one that belonged to <em>Homo neanderthalensis</em>. Name the tool culture associated with this type and species.<br><strong>A:</strong> Tool Y, and the Mousterian.</div>
+        <div class="past-exam-entry"><strong>2020 Exam Q38</strong><br><strong>Q:</strong> How would hominins have manufactured tool III?<br><strong>A:</strong> Levallois method, or a large flake removed from a stone core; flakes with reworked or sharpened edges; pressure flaking.</div>
+        <div class="past-exam-entry"><strong>2025 Exam Q39</strong><br><em style="color:var(--text-mid);">In 1998, archaeologists discovered the skeleton of a four year old boy at Abrigo do Lagar Velho in Portugal, carefully buried and surrounded by pierced deer teeth and shell ornaments, dated to around 25 000 years ago.</em><br><strong>Q:</strong> Name the tool culture associated with <em>Homo neanderthalensis</em> and explain how the different types of neanderthal tools provide evidence of their advanced lifestyle.<br><strong>A:</strong> Mousterian. Then, across the tool types: scrapers, knives, blades and hand axes, able to prepare animal hides for clothing, build shelters and remove meat from animal bones; burin tools, able to engrave and carve materials and produce other tools; spears and points, hafted to a shaft or handle, able to hunt larger animals; use of a wider range of materials such as teeth, shells and bones, able to make more specialised tools and have specialised roles.</div>
+      </div>
+    </div>
+
+    <div id="tab-aurignacian" class="tab-content">
+      <div class="content-panel">
+        <h3>The Aurignacian</h3>
+        <p>The Aurignacian, the Solutrean and the Magdalenian are the three tool cultures of <em>Homo sapiens</em>, and together they make up the Upper Palaeolithic. All three are built on the <strong>blade</strong>, a long narrow flake struck from a prepared core, and all three use bone, antler and ivory alongside stone.</p>
+        <p>The Aurignacian is the <strong>earliest</strong> of the three. It is the first tool culture of modern humans in Europe, and it appears while <em>H. neanderthalensis</em> is still present, so Mousterian and Aurignacian tools overlap in time.</p>
+        <p>Its defining change is the shift from the flake to the <strong>blade</strong>. A blade is at least twice as long as it is wide, and blades are struck one after another from a single prepared core, so one core yields many usable cutting edges. This is a far more economical use of stone than anything before it.</p>
+        <div class="tool-fig"><svg viewBox="0 0 312 150" width="100%" style="max-width:640px;display:block;margin:0 auto;" role="img"><use href="#g-blade" x="2" y="4" width="100" height="120"/><text x="52" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Blade</text><use href="#g-burin" x="106" y="4" width="100" height="120"/><text x="156" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Burin</text><use href="#g-bonepoint" x="210" y="4" width="100" height="120"/><text x="260" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Bone point</text></svg><div class="tool-fig-cap">Aurignacian blade, burin with its angled chisel tip, and a bone point.</div></div>
+      </div>
+      <div class="content-panel">
+        <h3>What is distinctive</h3>
+        <ul>
+          <li>Blade tools struck in series from a prepared core.</li>
+          <li>The burin, a blade with a narrow angled chisel edge, used to engrave and to work bone and antler.</li>
+          <li>End scrapers, worked at the end of a blade rather than along its side.</li>
+          <li>Bone and antler points, the first widespread use of these materials for weapon tips.</li>
+          <li>The earliest figurative art and personal ornament, including carved figures and beads.</li>
+        </ul>
+        <p>The burin matters more than its size suggests. It is a tool for making other tools, and it is what makes systematic working of bone and antler possible. Every later development in bone technology depends on it.</p>
+      </div>
+      <div class="content-panel">
+        <h3>Uses and what they tell us</h3>
+        <p>The Aurignacian shares the six credited Upper Palaeolithic uses set out on the Overview tab. What is particular to it is the beginning of two of them: carving and ornament, which imply art and ritual belief, and the burin, which implies the use of alternative tool materials.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>The Aurignacian belongs to <em>Homo sapiens</em>. The 2025 examination offered "Aurignacian and <em>Homo neanderthalensis</em>" as a wrong option, so this pairing is a known trap.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>It is the <strong>earliest</strong> of the three, which is the fact most likely to be tested if the three are ever separated.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>No examination question has ever asked about the Aurignacian directly. It has appeared twice, both times as a wrong option in a multiple choice question. Know the name, the species and its position in the sequence, and answer detailed questions from the shared Upper Palaeolithic material.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2017 Exam Q29</strong><br><em style="color:var(--text-mid);">A single tool diagram was shown, which is not reproduced here.</em><br><strong>Q:</strong> The tool shown, described as a laurel-leaf, is associated with the tool culture named (a) Aurignacian (b) Magdalenian (c) Oldowan (d) Solutrean<br><strong>A:</strong> (d) Solutrean. The Aurignacian appears here only as a wrong option.</div>
+        <div class="past-exam-entry"><strong>2025 Exam Q30</strong><br><strong>Q:</strong> Which of the following identifies the tool culture and the hominin species associated with these types of tools? (a) Oldowan and <em>Homo habilis</em> (b) Acheulian and <em>Homo erectus</em> (c) Aurignacian and <em>Homo neanderthalensis</em> (d) Magdalenian and <em>Homo sapiens</em><br><strong>A:</strong> (b). Option (c) is wrong twice over: the diagram showed hand axes, and the Aurignacian belongs to <em>H. sapiens</em>, not to Neanderthals.</div>
+      </div>
+    </div>
+
+    <div id="tab-solutrean" class="tab-content">
+      <div class="content-panel">
+        <h3>The Solutrean</h3>
+        <p>The Aurignacian, the Solutrean and the Magdalenian are the three tool cultures of <em>Homo sapiens</em>, and together they make up the Upper Palaeolithic. All three are built on the <strong>blade</strong>, a long narrow flake struck from a prepared core, and all three use bone, antler and ivory alongside stone.</p>
+        <p>The Solutrean is the <strong>middle</strong> of the three, and it is the one the examinations have actually tested. It is known for finely worked bifacial points, of which the best known is the <strong>laurel leaf</strong>, a slender leaf shaped blade worked over both faces until it is thin, symmetrical and sharp all round.</p>
+        <div class="tool-fig"><svg viewBox="0 0 312 150" width="100%" style="max-width:640px;display:block;margin:0 auto;" role="img"><use href="#g-laurel" x="2" y="4" width="100" height="120"/><text x="52" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Laurel leaf point</text><use href="#g-blade" x="106" y="4" width="100" height="120"/><text x="156" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Blade</text><use href="#g-needle" x="210" y="4" width="100" height="120"/><text x="260" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Bone needle</text></svg><div class="tool-fig-cap">The Solutrean laurel leaf point, a blade, and an eyed bone needle.</div></div>
+      </div>
+      <div class="content-panel">
+        <h3>How they were made: pressure flaking</h3>
+        <p>The laurel leaf is not made by striking. It is finished by <strong>pressure flaking</strong>, in which a pointed tool of bone or antler is pressed against the edge of the stone to remove a small flake, rather than hitting it. Pressing gives far more control than striking, so the maker can take off very small flakes exactly where they are wanted.</p>
+        <p>The result is the thinnest and most precisely shaped stone tool in the whole sequence. Some laurel leaves are so thin and so regular that they are thought to have been made to be looked at rather than used, which if true would be the clearest evidence in any tool culture of work done for its own sake.</p>
+        <div class="scsa-note"><p>Pressure flaking is credited in the marking keys, in 2018 and 2020, although in both cases in a Mousterian context. It is the one technique term you can use for the Solutrean that a marker will already recognise.</p></div>
+      </div>
+      <div class="content-panel">
+        <h3>What is distinctive</h3>
+        <ul>
+          <li>Laurel leaf and willow leaf points, bifacially worked and very thin.</li>
+          <li>Pressure flaking as the finishing technique.</li>
+          <li>Shouldered points, with a notch at the base for hafting.</li>
+          <li>Eyed bone needles, which appear in western Europe from this period, implying sewn and fitted clothing.</li>
+        </ul>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>If a question shows a tool described as a <strong>laurel leaf</strong>, the answer is Solutrean. This is the only Upper Palaeolithic culture that has ever been the credited answer to a question.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>Pair the culture with its technique: Solutrean and pressure flaking, in the same way that Mousterian pairs with Levallois.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>Eyed needles matter for the trends question. A needle means sewn clothing, and clothing is one of the six credited lifestyle inferences.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2017 Exam Q29</strong><br><em style="color:var(--text-mid);">A single tool diagram was shown, described in the question as a laurel-leaf. It has been redrawn below.</em><br>        <div class="exam-fig"><svg viewBox="0 0 100 170" width="100%" style="display:block;margin:0 auto;" role="img"><use href="#g-laurel" x="11" y="6" width="78" height="94"/><text x="50.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">Laurel leaf</text></svg><div class="tool-fig-cap">Original drawing, not the examination image.</div></div><strong>Q:</strong> The tool shown, described as a laurel-leaf, is associated with the tool culture named (a) Aurignacian (b) Magdalenian (c) Oldowan (d) Solutrean<br><strong>A:</strong> (d) Solutrean.</div>
+        <div class="past-exam-entry"><strong>2016 Exam Q37</strong><br><em style="color:var(--text-mid);">This question is about Upper Palaeolithic tools as a whole rather than about one of the three cultures.</em><br><strong>Q:</strong> The tools labelled E show a great variety in size and shape. Suggest two ways in which the hominid who made these tools might have used them and what that tool culture implies about the way they lived.<br><strong>A:</strong> Needles for sewing, so they wore clothes. Weapons for hunting, so they ate meat. Barbed spears or arrowheads attached to wood, so they hunted with spears. Harpoons, so they fished. Ornamental pieces or carvings on tools, so they made art, figurines and jewellery, told stories and held ritual beliefs. Burin tools used to make other tools, so they used alternative materials such as bone, ivory and antler.</div>
+      </div>
+    </div>
+
+    <div id="tab-magdalenian" class="tab-content">
+      <div class="content-panel">
+        <h3>The Magdalenian</h3>
+        <p>The Aurignacian, the Solutrean and the Magdalenian are the three tool cultures of <em>Homo sapiens</em>, and together they make up the Upper Palaeolithic. All three are built on the <strong>blade</strong>, a long narrow flake struck from a prepared core, and all three use bone, antler and ivory alongside stone.</p>
+        <p>The Magdalenian is the <strong>most recent</strong> of the three and the last tool culture in the course. It is the point at which every trend in the sequence has run its full course: the widest range of materials, the greatest workmanship, and the most specialised tools.</p>
+        <p>Stone blades become small and standardised, and much of the interesting work moves into <strong>bone and antler</strong>. The barbed harpoon, carved from antler and lashed to a shaft, is its signature tool.</p>
+        <div class="tool-fig"><svg viewBox="0 0 416 150" width="100%" style="max-width:640px;display:block;margin:0 auto;" role="img"><use href="#g-harpoon" x="2" y="4" width="100" height="120"/><text x="52" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Barbed harpoon</text><use href="#g-needle" x="106" y="4" width="100" height="120"/><text x="156" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Eyed needle</text><use href="#g-hafted" x="210" y="4" width="100" height="120"/><text x="260" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Hafted point</text><use href="#g-blade" x="314" y="4" width="100" height="120"/><text x="364" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5C4A3A">Blade</text></svg><div class="tool-fig-cap">Magdalenian barbed antler harpoon, eyed bone needle, hafted point and blade.</div></div>
+      </div>
+      <div class="content-panel">
+        <h3>What is distinctive</h3>
+        <ul>
+          <li>Barbed harpoons of antler and bone, for fishing and for hunting.</li>
+          <li>Small standardised blades, set into handles of bone or wood.</li>
+          <li>Eyed needles, in wide use, implying tailored clothing.</li>
+          <li>The spear thrower, a shaft that extends the arm and throws a spear much further.</li>
+          <li>The great painted caves, which belong to this period.</li>
+        </ul>
+        <p>The spear thrower and the harpoon are both worth noticing for the same reason: neither is a tool that does a job directly. Each is a device for making a person better at a job, which is a further step again from a hand axe that simply cuts.</p>
+      </div>
+      <div class="content-panel">
+        <h3>Uses and what they tell us</h3>
+        <p>All six of the credited Upper Palaeolithic lifestyle inferences are visible in the Magdalenian at once. Needles mean clothing. Weapons mean meat eating. Barbed spears and arrowheads attached to wood mean spear hunting. Harpoons mean fishing. Carvings and ornament mean art, figurines, jewellery, story telling and ritual belief. Burins used to make other tools mean the use of bone, ivory and antler.</p>
+        <p>Fishing is worth singling out, because it is a food source that no earlier culture could reach. A barbed harpoon is the first tool in the sequence that opens up an entirely new part of the environment.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>The Magdalenian is the <strong>most recent</strong> tool culture in the course. In a sequencing question its tools are always the last.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>Harpoons mean fishing, and needles mean clothing. Both pairings are in the marking key, and both are quick marks in a uses and lifestyle question.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>The Magdalenian has never been asked about directly. It has appeared twice as a multiple choice option, once wrong and once as a true pairing offered against a diagram of hand axes.</div>
+        <div class="exam-tip"><span class="tip-num">4</span>When a question asks about <em>H. sapiens</em> tools without naming a culture, answer from the Upper Palaeolithic material as a whole. You will not lose marks for naming the Magdalenian, but you will not gain any either.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2024 Exam Q36</strong><br><em style="color:var(--text-mid);">Six numbered sets of tool diagrams were shown, in no particular order. The three Upper Palaeolithic sets have been redrawn below.</em><br>        <div class="exam-fig"><svg viewBox="0 0 612 170" width="100%" style="display:block;margin:0 auto;" role="img"><use href="#g-blade" x="11" y="6" width="78" height="94"/><use href="#g-burin" x="89" y="6" width="78" height="94"/><use href="#g-needle" x="167" y="6" width="78" height="94"/><text x="128.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">2</text><line x1="256" y1="6" x2="256" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-hafted" x="267" y="6" width="78" height="94"/><use href="#g-harpoon" x="345" y="6" width="78" height="94"/><text x="345.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">4</text><line x1="434" y1="6" x2="434" y2="112" stroke="#C4BDB4" stroke-width="1"/><use href="#g-bonepoint" x="445" y="6" width="78" height="94"/><use href="#g-needle" x="523" y="6" width="78" height="94"/><text x="523.0" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#3D2B1F">5</text></svg><div class="tool-fig-cap">Original drawings, not the examination images.</div></div><strong>Q:</strong> State the numbers of the three sets of tools associated with early <em>Homo sapiens</em> or Cro-Magnon man.<br><strong>A:</strong> Sets 2, 4 and 5. Cro-Magnon is an older name for early modern <em>Homo sapiens</em> in Europe, and it is the only place the examinations use the term.</div>
+        <div class="past-exam-entry"><strong>2019 Exam Q31</strong><br><strong>Q:</strong> Complete the table using the diagrams: this tool culture came immediately after the Oldowan culture; the most recent tools; these tools are commonly referred to as hand axes; these tools were often hafted.<br><strong>A:</strong> The most recent tools, X, which is the Upper Palaeolithic set. Often hafted, X and Z, that is the Upper Palaeolithic and the Mousterian.</div>
+        <div class="past-exam-entry"><strong>2017 Exam Q29</strong><br><strong>Q:</strong> The tool shown, described as a laurel-leaf, is associated with the tool culture named (a) Aurignacian (b) Magdalenian (c) Oldowan (d) Solutrean<br><strong>A:</strong> (d) Solutrean. The Magdalenian appears here only as a wrong option.</div>
+      </div>
+    </div>
+
+  </td>
+  <td class="col-right" style="width:215px;vertical-align:top;padding:1rem 1.5rem 1rem 0.5rem;">
+    <div class="fossil-img-box" style="margin-bottom:1rem;">
+      <div style="height:160px;display:flex;align-items:center;justify-content:center;text-align:center;padding:0.5rem;border:1px dashed var(--stone-light);margin:0.4rem;border-radius:6px;">
+        <span style="font-size:0.68rem;color:var(--text-light);font-style:italic;line-height:1.6;">Image slot<br>stone tool photograph</span>
+      </div>
+      <div class="fossil-img-caption">Tool culture image</div>
+    </div>
+
+    <div class="panel" style="margin-bottom:1rem;">
+      <div class="panel-header">Species pages</div>
+      <div class="panel-body">
+        <div class="link-list">
+          <a href="habilis-profile.html">H. habilis</a>
+          <a href="erectus-profile.html">H. erectus</a>
+          <a href="neanderthalensis-profile.html">H. neanderthalensis</a>
+          <span style="display:block;font-size:0.73rem;color:var(--text-light);padding:0.3rem 0;font-style:italic;">H. sapiens</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">The three trends</div>
+      <div class="panel-body">
+        <p style="font-size:0.72rem;color:var(--text-mid);line-height:1.6;margin:0 0 0.4rem;">Materials, from stone only to bone, antler, ivory and wood.</p>
+        <p style="font-size:0.72rem;color:var(--text-mid);line-height:1.6;margin:0 0 0.4rem;">Workmanship, more blows and greater complexity.</p>
+        <p style="font-size:0.72rem;color:var(--text-mid);line-height:1.6;margin:0;">Specialisation, tools used to make other tools, and hafting.</p>
+      </div>
+    </div>
+  </td>
+</tr>
+</table><!-- end main grid -->
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
