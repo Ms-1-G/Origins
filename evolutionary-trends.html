@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolutionary Trends | Origins</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown-dark: #3D2B1F;
+  --brown-mid: #6B4226;
+  --brown-light: #A0674A;
+  --ochre: #C17F3B;
+  --ochre-light: #E8C07A;
+  --ochre-pale: #F5E6C8;
+  --stone: #8C8478;
+  --stone-light: #C4BDB4;
+  --stone-pale: #EDE8E0;
+  --parchment: #F8F3EB;
+  --parch-dark: #EDE4D3;
+  --text-dark: #2C1F14;
+  --text-mid: #5C4A3A;
+  --text-light: #8C7A6A;
+  --green-pale: #E8F0E4;
+  --green-mid: #5A8A5A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--parchment); color: var(--text-dark); }
+
+/* NAV */
+.topnav {
+  background: var(--brown-dark);
+  padding: 0 1.5rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-bottom: 3px solid var(--ochre);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-brand { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--ochre-light); letter-spacing: 0.06em; white-space: nowrap; }
+.nav-links { display: flex; gap: 0.15rem; }
+.nav-links a { font-size: 0.72rem; color: var(--stone-light); text-decoration: none; padding: 0.35rem 0.65rem; border-radius: 4px; white-space: nowrap; }
+.nav-links a:hover { background: var(--brown-mid); color: var(--ochre-light); }
+.nav-links a.active { color: var(--ochre-light); border-bottom: 2px solid var(--ochre); }
+
+/* SPECIES SELECTOR */
+.species-selector {
+  background: var(--brown-mid);
+  padding: 0.45rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--brown-light);
+}
+.selector-label { font-size: 0.62rem; color: var(--ochre-light); text-transform: uppercase; letter-spacing: 0.1em; margin-right: 0.3rem; white-space: nowrap; }
+.sp-btn {
+  font-size: 0.68rem; font-style: italic; font-family: 'Inter', sans-serif;
+  padding: 0.25rem 0.7rem; border-radius: 20px; cursor: pointer; border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.12); color: var(--ochre-pale);
+  transition: all 0.15s;
+}
+.sp-btn.active { background: var(--ochre); border-color: var(--ochre-light); color: white; font-weight: 600; }
+.sp-btn:hover:not(.active) { background: rgba(255,255,255,0.22); }
+
+/* SPECIES HEADER */
+.species-header {
+  background: var(--parch-dark);
+  padding: 0.85rem 1.5rem;
+  border-bottom: 1px solid var(--stone-light);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+}
+.species-name { font-family: 'Cinzel', serif; font-size: 1.55rem; color: var(--brown-dark); font-style: italic; }
+.species-sub { font-size: 0.72rem; color: var(--stone); letter-spacing: 0.05em; margin-top: 0.15rem; }
+.syllabus-badge {
+  background: var(--ochre-pale); border: 1px solid var(--ochre-light);
+  color: var(--brown-mid); font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.28rem 0.75rem; border-radius: 20px; white-space: nowrap;
+}
+
+/* MAIN LAYOUT */
+.main-grid {
+  width: 100%;
+  border-collapse: collapse;
+}
+.main-grid img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* PANELS */
+.panel {
+  background: white;
+  border: 1px solid var(--stone-light);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.panel-header {
+  background: var(--brown-dark);
+  padding: 0.45rem 0.85rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ochre-light);
+  font-weight: 600;
+}
+.panel-body { padding: 0.65rem 0.85rem; }
+
+/* KEY FACTS TABLE */
+.facts-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+.facts-table td { padding: 0.38rem 0; vertical-align: top; font-size: 0.76rem; }
+.facts-table td:first-child { color: var(--text-light); width: 45%; }
+.facts-table td:last-child { color: var(--text-dark); text-align: right; font-weight: 500; }
+.facts-table tr { border-bottom: 1px solid var(--stone-pale); }
+.facts-table tr:last-child { border-bottom: none; }
+.cc-avg { display: block; color: var(--ochre); font-size: 0.67rem; margin-top: 0.1rem; }
+
+/* CLASSIFICATION TABLE */
+.class-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+.class-table td { padding: 0.25rem 0; }
+.class-table td:first-child { color: var(--text-light); }
+.class-table td:last-child { color: var(--text-dark); text-align: right; }
+.class-table tr { border-bottom: 1px solid var(--stone-pale); }
+.class-table tr:last-child { border-bottom: none; }
+.class-table .highlight td { background: var(--ochre-pale); }
+.class-table .highlight td:first-child { color: var(--brown-mid); font-weight: 600; padding-left: 0.3rem; }
+.class-table .highlight td:last-child { color: var(--brown-dark); font-weight: 600; font-style: italic; padding-right: 0.3rem; }
+
+/* FOSSIL IMAGE */
+.fossil-img-box {
+  background: var(--parch-dark);
+  border: 1px solid var(--stone-light);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.fossil-img-box img {
+  width: 100%; height: 160px; object-fit: cover; display: block;
+}
+.fossil-img-caption {
+  font-size: 0.65rem; color: var(--text-light); padding: 0.35rem 0.65rem;
+  font-style: italic; border-top: 1px solid var(--stone-light);
+}
+
+/* TABS */
+.tab-bar {
+  display: flex;
+  border-bottom: 2px solid var(--ochre);
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.tab-btn {
+  background: transparent; border: none;
+  font-family: 'Inter', sans-serif; font-size: 0.72rem;
+  color: var(--brown-mid); padding: 0.45rem 0.85rem;
+  cursor: pointer; border-radius: 6px 6px 0 0;
+  transition: all 0.15s; white-space: nowrap;
+}
+.tab-btn:hover { background: var(--ochre-pale); }
+.tab-btn.active { background: var(--ochre); color: white; font-weight: 600; }
+
+/* TAB CONTENT */
+.tab-content { display: none !important; }
+.tab-content.active { display: block !important; }
+
+/* CONTENT PANELS */
+.content-panel {
+  background: white; border: 1px solid var(--stone-light);
+  border-radius: 10px; padding: 1rem 1.1rem; margin-bottom: 1rem;
+}
+.content-panel h3 {
+  font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--brown-dark);
+  margin-bottom: 0.6rem; padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--stone-pale);
+}
+.content-panel p { font-size: 0.83rem; color: var(--text-dark); line-height: 1.75; margin-bottom: 0.65rem; }
+.content-panel p:last-child { margin-bottom: 0; }
+.content-panel ul { font-size: 0.83rem; color: var(--text-dark); line-height: 1.7; margin: 0.4rem 0 0.65rem 1.2rem; }
+.content-panel ul li { margin-bottom: 0.25rem; }
+
+/* TWO-COLUMN for locomotion */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+.col-green { background: var(--green-pale); border: 1px solid #9EC99E; border-radius: 8px; padding: 0.75rem; }
+.col-stone { background: var(--stone-pale); border: 1px solid var(--stone-light); border-radius: 8px; padding: 0.75rem; }
+.col-label { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+.col-green .col-label { color: var(--green-mid); }
+.col-stone .col-label { color: var(--stone); }
+
+/* SKULL DIAGRAM */
+.skull-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+.skull-svg-box { background: var(--parch-dark); border-radius: 8px; padding: 0.75rem; text-align: center; }
+.skull-features-list { font-size: 0.8rem; }
+.skull-feature { display: flex; gap: 0.5rem; padding: 0.4rem 0; border-bottom: 1px solid var(--stone-pale); }
+.skull-feature:last-child { border-bottom: none; }
+.sf-num { background: var(--ochre); color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+.sf-text strong { color: var(--brown-dark); display: block; font-size: 0.75rem; }
+.sf-text span { color: var(--text-mid); font-size: 0.72rem; line-height: 1.5; }
+
+/* EXAM FOCUS */
+.exam-tip > *:last-child { flex: 1; min-width: 0; }
+.exam-box {
+  background: #FFF8E8; border: 1px solid var(--ochre-light);
+  border-radius: 10px; padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+.exam-box-focus {
+  background: #EDF4ED; border: 1px solid #9EC99E;
+  border-radius: 10px; padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+.exam-box .exam-box-title { color: var(--ochre); }
+.exam-box-focus .exam-box-title { color: #4A7A4A; }
+.past-exam-entry {
+  border-left: 3px solid #9EC99E;
+  padding-left: 0.75rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--text-dark);
+}
+.past-exam-entry:last-child { margin-bottom: 0; }
+.exam-box-title {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--ochre); margin-bottom: 0.6rem;
+}
+.exam-tip { display: block; margin-bottom: 0.75rem; font-size: 0.82rem; line-height: 1.7; color: var(--text-dark); padding-left: 2rem; position: relative; }
+.exam-tip .tip-num { position: absolute; left: 0; top: 0; }
+.exam-tip:last-child { margin-bottom: 0; }
+.tip-num { background: var(--ochre); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 0.62rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem; }
+
+/* MAP */
+.map-box { border-radius: 8px; overflow: hidden; border: 1px solid var(--stone-light); background: #C8DEB8; }
+.map-placeholder { height: 180px; background: linear-gradient(160deg, #7AADA8 0%, #5B8FAA 40%, #7AADA8 100%); position: relative; display: flex; align-items: center; justify-content: center; }
+.map-africa { fill: #8FBC70; stroke: #5A8A5A; stroke-width: 1.5; }
+.map-dot { fill: var(--ochre); stroke: white; stroke-width: 1.5; cursor: pointer; }
+.map-legend { font-size: 0.65rem; color: var(--text-mid); padding: 0.4rem 0.65rem; background: white; border-top: 1px solid var(--stone-light); }
+
+/* DISCOVERY SITES */
+.site-card { background: var(--stone-pale); border-radius: 7px; padding: 0.6rem 0.75rem; margin-bottom: 0.6rem; }
+.site-card h4 { font-size: 0.78rem; color: var(--brown-dark); margin-bottom: 0.2rem; }
+.site-card p { font-size: 0.72rem; color: var(--text-mid); line-height: 1.55; }
+
+/* DATING */
+.dating-box { background: var(--parch-dark); border-left: 3px solid var(--ochre); padding: 0.65rem 0.85rem; border-radius: 0 7px 7px 0; margin-bottom: 0.75rem; }
+.dating-box strong { font-size: 0.75rem; color: var(--brown-dark); display: block; margin-bottom: 0.2rem; }
+.dating-box p { font-size: 0.75rem; color: var(--text-mid); line-height: 1.6; }
+</style>
+
+
+<style>
+/* TOOL CULTURES PAGE */
+.seq-rail { padding: 0.35rem 0; }
+.seq-step { position: relative; padding: 0 0 0 1.6rem; margin-bottom: 0.75rem; }
+.seq-step:last-child { margin-bottom: 0; }
+.seq-step:before {
+  content: ''; position: absolute; left: 6px; top: 16px; bottom: -0.75rem;
+  width: 2px; background: var(--stone-light);
+}
+.seq-step:last-child:before { display: none; }
+.seq-dot {
+  position: absolute; left: 0; top: 3px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--ochre); border: 2px solid white; box-shadow: 0 0 0 1px var(--ochre);
+}
+.seq-name { font-size: 0.78rem; font-weight: 600; color: var(--brown-dark); }
+.seq-sp { font-size: 0.7rem; color: var(--ochre); font-style: italic; }
+.seq-sp a { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--ochre); }
+.seq-sp a:hover { color: var(--brown-mid); border-bottom-color: var(--brown-mid); }
+.seq-meta { font-size: 0.67rem; color: var(--text-light); line-height: 1.45; margin-top: 0.1rem; }
+.seq-sub { font-size: 0.66rem; color: var(--text-mid); margin-top: 0.25rem; padding-left: 0.1rem; line-height: 1.5; }
+.link-list a { display: block; font-size: 0.73rem; color: var(--brown-mid); text-decoration: none;
+  padding: 0.3rem 0; border-bottom: 1px solid var(--stone-pale); font-style: italic; }
+.link-list a:last-child { border-bottom: none; }
+.link-list a:hover { color: var(--ochre); }
+.panel-link { font-size: 0.74rem; color: var(--text-mid); line-height: 1.65; margin: 0; }
+.panel-link a { color: var(--ochre); font-weight: 600; text-decoration: none;
+  border-bottom: 1px solid var(--ochre-light); }
+.panel-link a:hover { color: var(--brown-mid); border-bottom-color: var(--brown-mid); }
+.tool-fig { background: var(--parch-dark); border-radius: 8px; padding: 0.85rem 0.6rem 0.5rem;
+  margin: 0.5rem 0 0.75rem; }
+.tool-fig-cap { font-size: 0.68rem; color: var(--text-light); font-style: italic;
+  text-align: center; margin-top: 0.35rem; padding: 0 0.5rem; line-height: 1.5; }
+.photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; align-items: start; }
+.photo-pair figure { margin: 0; }
+.photo-pair img { width: 100%; height: 200px; object-fit: contain; display: block;
+  background: white; border: 1px solid var(--stone-light); border-radius: 7px; padding: 0.4rem; }
+.photo-pair figcaption { font-size: 0.7rem; color: var(--text-mid); line-height: 1.55;
+  margin-top: 0.35rem; text-align: center; }
+.exam-fig { background: white; border: 1px solid var(--stone-light); border-radius: 7px;
+  padding: 0.6rem 0.4rem 0.3rem; margin: 0.5rem 0; }
+.trend-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.6rem;
+  align-items: stretch; }
+.trend-a { background: var(--stone-pale); border-radius: 7px; padding: 0.6rem 0.75rem; }
+.trend-b { background: var(--green-pale); border: 1px solid #9EC99E; border-radius: 7px; padding: 0.6rem 0.75rem; }
+.trend-lab { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 0.25rem; }
+.trend-a .trend-lab { color: var(--stone); }
+.trend-b .trend-lab { color: var(--green-mid); }
+.trend-row div p { font-size: 0.78rem; line-height: 1.6; margin: 0; color: var(--text-dark); }
+.scsa-note { background: #FFF8E8; border-left: 3px solid var(--ochre-light);
+  padding: 0.6rem 0.85rem; border-radius: 0 7px 7px 0; margin: 0.6rem 0; }
+.scsa-note p { font-size: 0.78rem; color: var(--text-mid); line-height: 1.65; margin: 0; }
+.tech-item { padding: 0.45rem 0; border-bottom: 1px solid var(--stone-pale); }
+.tech-item:first-child { padding-top: 0; }
+.tech-item:last-child { border-bottom: none; padding-bottom: 0; }
+.tech-name { font-size: 0.75rem; font-weight: 600; color: var(--brown-dark); }
+.tech-cult { font-size: 0.68rem; color: var(--ochre); }
+.tech-desc { font-size: 0.67rem; color: var(--text-light); line-height: 1.5; margin-top: 0.12rem; }
+</style>
+</head>
+<body>
+
+<style>
+/* TRENDS PAGE */
+.tgrid-wrap { overflow-x: auto; margin: 0.6rem 0 0.4rem; }
+table.tgrid { border-collapse: collapse; font-size: 0.74rem; min-width: 100%; }
+table.tgrid th, table.tgrid td {
+  border: 1px solid var(--stone-light); padding: 0.4rem 0.55rem;
+  text-align: left; vertical-align: top; line-height: 1.5;
+}
+table.tgrid thead th {
+  background: var(--brown-dark); color: var(--ochre-light);
+  font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.07em;
+  font-weight: 600; white-space: nowrap;
+}
+table.tgrid tbody th {
+  background: var(--parch-dark); color: var(--brown-dark);
+  font-style: italic; white-space: nowrap; font-weight: 600;
+}
+table.tgrid tbody tr:nth-child(even) td { background: #FBF8F3; }
+table.tgrid td { color: var(--text-dark); }
+.tgrid-note { font-size: 0.68rem; color: var(--text-light); font-style: italic; margin-top: 0.2rem; }
+.trend-head {
+  background: var(--ochre-pale); border-left: 3px solid var(--ochre);
+  padding: 0.6rem 0.85rem; border-radius: 0 7px 7px 0; margin: 0 0 0.75rem;
+}
+.trend-head p { font-size: 0.85rem; color: var(--brown-dark); line-height: 1.6; margin: 0; font-weight: 500; }
+.axis-note { font-size: 0.72rem; color: var(--text-mid); font-style: italic;
+  border-top: 1px dotted var(--stone-light); padding-top: 0.4rem; margin-top: 0.5rem; }
+.sp-rail { padding: 0.1rem 0; }
+.sp-row { display: flex; align-items: baseline; gap: 0.4rem; padding: 0.32rem 0;
+  border-bottom: 1px solid var(--stone-pale); }
+.sp-row:last-child { border-bottom: none; }
+.sp-row a { font-size: 0.73rem; font-style: italic; color: var(--brown-mid);
+  text-decoration: none; flex: 1; }
+.sp-row a:hover { color: var(--ochre); }
+.sp-cc { font-size: 0.67rem; color: var(--ochre); white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="nav-brand">ORIGINS</div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Discovery Map</a>
+    <a href="#">Timeline</a>
+    <a href="afarensis-profile.html">Species</a>
+    <a href="tool-cultures.html">Tool Cultures</a>
+    <a href="evolutionary-trends.html" class="active">Evolutionary Trends</a>
+    <a href="#">Activities</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="species-header">
+  <div>
+    <div class="species-name" style="font-style:normal;">Evolutionary Trends</div>
+    <div class="species-sub">Syllabus section 8, hominid evolutionary trends</div>
+  </div>
+  <span class="syllabus-badge">&#9733; Syllabus content</span>
+</div>
+<!-- MAIN GRID -->
+<table class="main-grid" cellpadding="0" cellspacing="0">
+<tr>
+  <td class="col-left" style="width:260px;vertical-align:top;padding:1rem 0.5rem 1rem 1.5rem;">
+    <div class="panel" style="margin-bottom:1rem;">
+      <div class="panel-header">The seven species, in order</div>
+      <div class="panel-body">
+        <div class="sp-rail">
+        <div class="sp-row"><a href="afarensis-profile.html">A. afarensis</a><span class="sp-cc">420</span></div>
+        <div class="sp-row"><a href="africanus-profile.html">A. africanus</a><span class="sp-cc">450</span></div>
+        <div class="sp-row"><a href="robustus-profile.html">P. robustus</a><span class="sp-cc">530</span></div>
+        <div class="sp-row"><a href="habilis-profile.html">H. habilis</a><span class="sp-cc">600</span></div>
+        <div class="sp-row"><a href="erectus-profile.html">H. erectus</a><span class="sp-cc">1000</span></div>
+        <div class="sp-row"><a href="neanderthalensis-profile.html">H. neanderthalensis</a><span class="sp-cc">1450</span></div>
+        <div class="sp-row"><a href="sapiens-profile.html">H. sapiens</a><span class="sp-cc">1350</span></div>
+        </div>
+        <p style="font-size:0.67rem;color:var(--text-light);line-height:1.5;margin:0.5rem 0 0;">Average cranial capacity in cm&#179;.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">Answering a trend question</div>
+      <div class="panel-body">
+        <p style="font-size:0.74rem;color:var(--text-mid);line-height:1.65;margin:0 0 0.45rem;">State the <strong>trend</strong>, then state what it <strong>tells us</strong>. Half the marks are for the consequence.</p>
+        <p style="font-size:0.74rem;color:var(--text-mid);line-height:1.65;margin:0;">Name the two things being compared. Most errors come from changing the comparison halfway through the answer.</p>
+      </div>
+    </div>
+  </td>
+  <td class="col-centre" style="vertical-align:top;padding:1rem 0.5rem;">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('overview', this)">Overview</button>
+      <button class="tab-btn" onclick="switchTab('brain', this)">Brain size</button>
+      <button class="tab-btn" onclick="switchTab('skull', this)">Skull and teeth</button>
+      <button class="tab-btn" onclick="switchTab('biped', this)">Bipedalism and limbs</button>
+      <button class="tab-btn" onclick="switchTab('tools', this)">Tools</button>
+      <button class="tab-btn" onclick="switchTab('phylo', this)">Phylogeny</button>
+      <button class="tab-btn" onclick="switchTab('summary', this)">Summary</button>
+    </div>
+
+    <div id="tab-overview" class="tab-content active">
+      <div class="content-panel">
+        <h3>What a trend is</h3>
+        <p>A trend is a direction of change that runs across the seven species rather than a fact about any one of them. The species pages describe each hominin in its own terms. This page does the comparing.</p>
+        <p>The syllabus frames the whole of section 8 as hominid evolutionary trends. Relatedness and evolutionary pathways are worked out by comparing the seven species with one another and with the great apes, and the tool cultures are set out as trends "in the changes in manufacturing techniques and the materials used". So the trend is the point, not a summary added at the end.</p>
+        <p>Six trends run across the sequence, and each has its own tab: brain size, the skull and face, the teeth and jaw, bipedalism, the limbs and hands, and the tools.</p>
+      </div>
+      <div class="content-panel">
+        <h3>How to answer a trend question</h3>
+        <div class="trend-head"><p>Every trend question is worth double marks. State the trend, then state what the trend tells us. An answer that lists trends alone scores at most half.</p></div>
+        <p>The examinations have asked for trends in 2019, 2020, 2022, 2023 and 2024, and the structure of the answer is the same every time. The marking keys award one mark for the change and one mark for its consequence, so a pair of statements earns two marks and a single statement earns one.</p>
+        <p>The second habit worth building is naming the comparison. A trend has two ends, and the marks depend on the examiner being able to see both of them.</p>
+        <ul>
+          <li><strong>Across species:</strong> the brow ridge of <em>H. sapiens</em> compared with the brow ridge of <em>A. afarensis</em>.</li>
+          <li><strong>Within one animal:</strong> the arms of <em>A. afarensis</em> compared with the legs of <em>A. afarensis</em>.</li>
+          <li><strong>Against the great apes:</strong> the human foramen magnum compared with that of a chimpanzee.</li>
+        </ul>
+        <p class="axis-note">These three axes answer different questions. Most lost marks come from starting an answer on one axis and finishing it on another.</p>
+      </div>
+      <div class="content-panel">
+        <h3>One direction, with exceptions</h3>
+        <p>Most of the trends run steadily in one direction, and two of them carry an exception that is itself examined.</p>
+        <ul>
+          <li><strong>Brain size</strong> rises from 420 cm&#179; to 1450 cm&#179;, and then <em>H. sapiens</em> sits <strong>below</strong> <em>H. neanderthalensis</em> at 1350 cm&#179;.</li>
+          <li><strong>Prognathism</strong> reduces steadily, apart from <em>P. robustus</em>, which is a specialised side branch built for heavy chewing rather than a step on the way to <em>Homo</em>.</li>
+        </ul>
+        <p>Both exceptions make the same point. A trend is a direction across a group of species, not a ladder that every species climbs.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>Give the trend <strong>and</strong> the consequence. This is the single most common way to lose marks on this topic.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>Say what is being compared with what. Name both ends of the comparison in the answer.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>Use the species names rather than "earlier" and "later". A marker can see a comparison between <em>A. afarensis</em> and <em>H. sapiens</em>; they cannot see one between "early hominins" and "modern humans".</div>
+        <div class="exam-tip"><span class="tip-num">4</span><em>P. robustus</em> is a side branch. Where a trend runs through the other six species, say so and treat robustus separately.</div>
+      </div>
+    </div>
+
+    <div id="tab-brain" class="tab-content">
+      <div class="content-panel">
+        <h3>Brain size increases</h3>
+        <div class="trend-head"><p>Cranial capacity rises more than threefold across the sequence, from an average of 420 cm&#179; in <em>A. afarensis</em> to 1450 cm&#179; in <em>H. neanderthalensis</em>.</p></div>
+        <p>The increase is uneven. It is slow through the australopithecines and <em>Paranthropus</em>, where the figures stay between 420 and 530 cm&#179;. It steepens sharply with the genus <em>Homo</em>: <em>H. habilis</em> at 600, then <em>H. erectus</em> at 1000, which is a jump of 400 cm&#179; in a single step and the largest in the whole sequence.</p>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Average cranial capacity</th><th>Change from the species above</th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>420 cm&#179;</td><td>&#8211;</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>450 cm&#179;</td><td>+30</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>530 cm&#179;</td><td>+80</td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>600 cm&#179;</td><td>+70</td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>1000 cm&#179;</td><td>+400</td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>1450 cm&#179;</td><td>+450</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>1350 cm&#179;</td><td>&#8722;100</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="tgrid-note">The 530 cm&#179; for <em>P. robustus</em> is textbook. Every other figure in this table has been printed by SCSA, and 420, 450, 600, 1000, 1350 and 1450 all appear together in the 2023 stimulus table.</p>
+        <p>The brain also changes in structure, not only in size. Compared with an ape brain, the hominid brain has a more highly convoluted cerebral cortex and a much larger frontal lobe, and in humans an expansion of Broca&#39;s area.</p>
+      </div>
+      <div class="content-panel">
+        <h3>What a larger brain allowed</h3>
+        <p>The consequence half of the trend is what earns the second mark, and four are credited.</p>
+        <ul>
+          <li>A larger brain can store more complex information.</li>
+          <li>Increasing brain size increased social interaction.</li>
+          <li>It allowed adaptability in unfamiliar environments.</li>
+          <li>It allowed the manufacture of tools.</li>
+        </ul>
+        <p>The relationship runs both ways, and the 2022 key sets out the loop: efficient tools meant a better ability to hunt for meat, the increase in protein provided the energy required to support a larger brain, and a larger brain may in turn have contributed to more cooperation and communication.</p>
+      </div>
+      <div class="content-panel">
+        <h3>The exception: <em>H. sapiens</em> below <em>H. neanderthalensis</em></h3>
+        <div class="trend-head"><p><em>H. neanderthalensis</em> averages 1450 cm&#179; and <em>H. sapiens</em> averages 1350 cm&#179;. The larger figure belongs to the species that is now extinct.</p></div>
+        <p>The explanation the marking key wants is anatomical rather than cognitive. The larger figure reflects a larger, longer and more robust cranium, and a bigger brain case, rather than a more complex brain.</p>
+        <p>So brain size on its own is unreliable evidence for how advanced a species was, and a question that gives a bigger capacity is often testing whether a student will jump to the wrong conclusion.</p>
+        <p class="axis-note">Note that SCSA has printed four different Neanderthal figures over the decade: 1400, 1450, 1485 and 1500 cm&#179;. All describe the same species. This site uses 1450, from the 2023 table, because that is the only occasion the figure appears beside every other syllabus species.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>Learn the six examined figures in order: 420, 450, 600, 1000, 1350 and 1450 cm&#179;. Always give the units.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>The biggest single jumps are <em>H. habilis</em> to <em>H. erectus</em>, and <em>H. erectus</em> to <em>H. neanderthalensis</em>. Both are around 400 to 450 cm&#179;.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>A larger brain does not mean a more advanced species. For the Neanderthal figure say that it reflects a larger, longer and more robust cranium rather than a more complex brain.</div>
+        <div class="exam-tip"><span class="tip-num">4</span>For the benefit of a larger brain, the credited answers are storing more complex information, increased social interaction, adaptability in unfamiliar environments, and the manufacture of tools.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2023 Exam Q34</strong><br><em style="color:var(--text-mid);">The question referred to a table of cranial capacities for six hominins.</em><br><strong>Q:</strong> Comment on the evolutionary significance for the increase in brain size shown by the data.<br><strong>A:</strong> A larger brain can store more complex information; increasing brain size increased social interaction; it allowed for adaptability in unfamiliar environments; it allowed for the manufacture of tools.</div>
+        <div class="past-exam-entry"><strong>2023 Exam Q34</strong><br><em style="color:var(--text-mid);">The table gave Hominin E at 1350 cm&#179; and Hominin F at 1450 cm&#179;.</em><br><strong>Q:</strong> Determine whether Hominin E is evolutionarily older or younger than Hominin F. Justify your response.<br><strong>A:</strong> Younger. Although Hominin F has a larger brain size, it is not because they are more evolved, but because they had a larger, more robust and longer cranium, and bigger brain cases rather than a necessarily more complex brain. Hominin E is <em>Homo sapiens</em> while Hominin F is <em>Homo neanderthalensis</em>.</div>
+        <div class="past-exam-entry"><strong>2018 Exam Q34</strong><br><strong>Q:</strong> Describe how the hominid brain differs from an ape brain.<br><strong>A:</strong> Any two of: an increase in cranial capacity, an average size of 1400 cc compared with 500 cc; a more highly convoluted cerebral cortex; a much larger frontal lobe.</div>
+        <div class="past-exam-entry"><strong>2025 Exam Q36</strong><br><strong>Q:</strong> Describe two differences between the cerebral cortex of humans and that of other primates.<br><strong>A:</strong> Any two of: humans have a larger cerebral cortex; humans have a larger frontal lobe; humans have an increased number of convolutions and a larger surface area; humans have an expansion of Broca&#39;s area.</div>
+        <div class="past-exam-entry"><strong>2021 Exam Q37</strong><br><strong>Q:</strong> Compare the cranial capacity of <em>H. erectus</em> with that of <em>H. habilis</em>.<br><strong>A:</strong> <em>H. erectus</em> at 1000 cm&#179; compared with 600 cm&#179; for <em>H. habilis</em>.</div>
+      </div>
+    </div>
+
+    <div id="tab-skull" class="tab-content">
+      <div class="content-panel">
+        <h3>The face flattens and the braincase rises</h3>
+        <div class="trend-head"><p>Prognathism reduces, the brow ridges reduce, the forehead becomes vertical, the braincase becomes higher and rounder, and a chin appears.</p></div>
+        <p>These five changes are one trend, because they are consequences of the same two things happening at once. The braincase grows to hold a larger brain, and the jaws and chewing muscles shrink as food becomes softer and is processed with tools. The face is pulled back underneath a vault that is expanding above it.</p>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Prognathism</th><th>Brow ridge</th><th>Forehead and vault</th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>Strong. Jaws project well forward of the braincase</td><td>Prominent, continuous and heavy</td><td>Low vault, sloping forehead</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>Large and prognathic, less so than <em>A. afarensis</em></td><td>Reduced, still present</td><td>Slightly arched forehead, rounded braincase</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>Strong, with a heavy mandible</td><td>Prominent, continuous and heavy</td><td>Low vault, no forehead, sagittal crest</td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>Reduced compared with australopithecines</td><td>Small and arched over each eye socket</td><td>Higher, fuller, more rounded</td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>Reduced. The face is flatter than <em>H. habilis</em></td><td>Thick and continuous, heavier than <em>H. habilis</em></td><td>Long, low, thick walled, sagittal keel</td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>Projects forward more than <em>H. sapiens</em></td><td>Thick, heavy and continuous</td><td>Long, low, flattened, receding forehead, occipital bun</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>Flat, tucked beneath the cranium</td><td>Reduced to absent</td><td>High rounded vault, vertical forehead</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="tgrid-note"><em>P. robustus</em> is a specialised side branch. Its heavy brow ridge and sagittal crest anchor massive chewing muscles rather than marking a step towards <em>Homo</em>.</p>
+        <p class="axis-note">Axis: each species compared with the others across the sequence.</p>
+      </div>
+      <div class="content-panel">
+        <h3>The foramen magnum moves forward</h3>
+        <div class="trend-head"><p>The foramen magnum moves from the rear of the skull base in a great ape to a central position underneath the skull in <em>Homo</em>.</p></div>
+        <p>This is the single most useful skull feature for bipedalism, because it says where the head sits on the spine. A central opening balances the skull directly on top of the vertebral column, so little muscular effort is needed to hold the head up. A rear opening means the head hangs forward from a spine that is held horizontally.</p>
+        <ul>
+          <li><strong>Great apes:</strong> to the rear of the base of the skull.</li>
+          <li><strong><em>A. afarensis</em>:</strong> further forward than a great ape, and not yet central.</li>
+          <li><strong><em>A. africanus</em> and <em>P. robustus</em>:</strong> further forward again, still not quite central.</li>
+          <li><strong><em>H. habilis</em> onwards:</strong> central, underneath the skull.</li>
+        </ul>
+        <p>Reduced prognathism works with it. A flatter face puts less weight in front of the joint, which also helps the skull balance on top of the spine.</p>
+      </div>
+      <div class="content-panel">
+        <h3>Teeth reduce and even out</h3>
+        <div class="trend-head"><p>Canines and molars reduce in size, the teeth become more even in size relative to one another, the diastema is lost, and the dental arcade changes from U-shaped to parabolic.</p></div>
+        <p>The four changes are examined together, and the 2022 marking key asks for three of them as a single list. Behind all four is a shift to food that needs less tearing and less grinding, helped by tools that cut and process food before it is eaten.</p>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Dental arcade</th><th>Canines and diastema</th><th>Teeth</th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>U-shaped, almost rectangular</td><td>Pointed canines, diastema present</td><td>Large, broad, heavily enamelled</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>Between U-shaped and parabolic</td><td>Shorter, smaller, less pointed. No diastema</td><td>Large with thick enamel, more even in size</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>U-shaped</td><td>Small relative to the molars</td><td>Massive molars, molarised premolars</td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>More parabolic, closer to the <em>Homo</em> pattern</td><td>Small, similar in size to other teeth. No diastema</td><td>Smaller overall, reduced molars and premolars</td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>Shorter and more rounded</td><td>Small and level with the other teeth. No diastema</td><td>Smaller than <em>H. habilis</em>, modern in style</td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>Rounded</td><td>Present in the tooth row</td><td>Larger than <em>H. sapiens</em>, retromolar space behind the third molars</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>Parabolic</td><td>Canines the same size as neighbouring teeth. No diastema</td><td>Small and even in size</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The jaw itself lightens along with the teeth, and the last step in the sequence adds a feature the others lack. A bony chin at the front of the mandible appears in <em>H. sapiens</em> alone.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>For a jaw and teeth trends question the key credits any three of: reduced size of canines, molars or teeth; loss of the diastema; teeth become more evenly sized to one another; flatter face, reduced prognathism or a smaller jaw.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>The dental arcade sequence is U-shaped, then intermediate, then parabolic. <em>A. afarensis</em> is U-shaped and almost rectangular, and <em>H. sapiens</em> is parabolic.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>A central foramen magnum is evidence of bipedalism, because it balances the skull on the vertebral column. Say what it allows, rather than only where it sits.</div>
+        <div class="exam-tip"><span class="tip-num">4</span>The chin belongs to <em>H. sapiens</em> alone, which makes it the quickest single identifier in the whole sequence.</div>
+        <div class="exam-tip"><span class="tip-num">5</span>Treat <em>P. robustus</em> separately in any skull or teeth trend. Its massive molars, heavy brow and sagittal crest are specialisations for chewing hard food.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2022 Exam Q32</strong><br><em style="color:var(--text-mid);">The question referred to a diagram of hominid jaws, which is not reproduced here.</em><br><strong>Q:</strong> Identify three hominid evolutionary trends shown in the jaws and teeth.<br><strong>A:</strong> Any three of: reduced size of canines, molars or teeth; loss of the diastema; teeth become more evenly sized to one another; flatter face, reduced prognathism or a smaller jaw.</div>
+        <div class="past-exam-entry"><strong>2024 Exam Q36</strong><br><strong>Q:</strong> State three separate features apparent in the diagrams that led you to choose the evolutionary order of the lower jaws.<br><strong>A:</strong> Any three of: jaw size; amount of prognathism; presence of a chin; size of the teeth.</div>
+        <div class="past-exam-entry"><strong>2021 Exam Q33</strong><br><strong>Q:</strong> Compare the skull of a great ape with that of a human.<br><strong>A:</strong> Brow ridges: great ape has a prominent brow ridge, humans have a reduced or absent brow ridge. Facial profile: great ape is prognathic with a sloping face, humans have a flatter, vertical face. Foramen magnum: great ape has it to the rear of the base of the skull, humans have it more central and underneath the skull.</div>
+        <div class="past-exam-entry"><strong>2019 Exam Q43</strong><br><strong>Q:</strong> For prognathism and dentition, outline what evidence would show how closely related a fossil species is to modern humans, and state how each feature benefits modern humans.<br><strong>A:</strong> Prognathism: large prognathism shows a closer relationship to early hominids, a flatter face shows a closer relationship to modern humans; reduced prognathism enables the skull to balance on top of the spine and facilitates upright stance for bipedalism. Dentition: smaller, more even teeth, less prominent canines, or a parabolic jaw show a closer relationship to modern humans, while a U-shaped jaw shows a closer relationship to early hominids; a smaller jaw aids the balance of the skull for bipedalism.</div>
+        <div class="past-exam-entry"><strong>2024 Exam Q36</strong><br><em style="color:var(--text-mid);">Four hominid skulls were shown. The diagrams are not reproduced here.</em><br><strong>Q:</strong> Considering only the lower jaw, identify the letters of the skulls in evolutionary order.<br><strong>A:</strong> C, A, D, B, where B is <em>Homo sapiens</em>.</div>
+      </div>
+    </div>
+
+    <div id="tab-biped" class="tab-content">
+      <div class="content-panel">
+        <h3>Bipedalism refines</h3>
+        <div class="trend-head"><p>Every species on this page is already bipedal. The trend is the refinement of upright walking, and the loss of the arboreal features that sat alongside it.</p></div>
+        <p><em>A. afarensis</em> walks upright and still climbs. The australopithecines are bipedal <strong>and</strong> arboreal at the same time, so the trend runs from bipedal and arboreal towards exclusively terrestrial bipedalism. It does not run from arboreal to bipedal.</p>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Locomotion</th><th>Retained arboreal features</th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>Bipedal and arboreal</td><td>Long curved fingers and toes, mobile shoulder joint, cone shaped rib cage</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>Bipedal and arboreal</td><td>Curvature reduced compared with <em>A. afarensis</em></td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>Bipedal</td><td>Genus level curvature, described for <em>Australopithecus</em> and <em>Paranthropus</em> together</td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>Bipedal</td><td>Slightly curved finger bones</td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>Bipedal</td><td>None. Simply bipedal, never described as arboreal</td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>Bipedal</td><td>None</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>Bipedal</td><td>None</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The skeletal adaptations themselves appear early and then stay. By 1.8 million years ago the pelvis is short and wide, the knee joint locks, the toe bones are short and straight, and the big toe is aligned with the others. The head to toe list below is the checklist a question expects.</p>
+        <div class="two-col">
+          <div class="col-green">
+            <div class="col-label">The adaptation</div>
+            <ul style="margin:0 0 0 1rem;font-size:0.8rem;line-height:1.65;">
+              <li>Foramen magnum central, underneath the skull</li>
+              <li>S-shaped spine with a double curve</li>
+              <li>Wedge shaped lumbar vertebrae</li>
+              <li>Short, wide, bowl shaped pelvis</li>
+              <li>Carrying angle of the femur</li>
+              <li>Large condyles, knee joint locks</li>
+              <li>Transverse and longitudinal arches</li>
+              <li>Big toe aligned with the other toes</li>
+              <li>Robust calcaneus</li>
+            </ul>
+          </div>
+          <div class="col-stone">
+            <div class="col-label">What it achieves</div>
+            <ul style="margin:0 0 0 1rem;font-size:0.8rem;line-height:1.65;">
+              <li>Balances the skull on the vertebral column</li>
+              <li>Carries the weight of the trunk over the hips</li>
+              <li>Balances the trunk above the pelvis</li>
+              <li>Supports the organs, gives stability</li>
+              <li>Brings the knees under the centre of gravity</li>
+              <li>Takes the weight when standing on one leg</li>
+              <li>Absorb shock, support the body weight</li>
+              <li>Gives a firm push off at each step</li>
+              <li>Takes the impact of heel strike</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="content-panel">
+        <h3>Arms and legs: two different comparisons</h3>
+        <div class="trend-head"><p>Arms become shorter relative to legs across the sequence, and <em>H. erectus</em> is the break point where the modern proportions appear.</p></div>
+        <p>This trend causes more confusion than any other on the page, because two different comparisons use the same words. Keep them apart.</p>
+        <div class="two-col">
+          <div class="col-stone">
+            <div class="col-label">Within one animal</div>
+            <p style="font-size:0.8rem;line-height:1.65;margin:0;">Arms compared with legs in the same skeleton. <strong>No hominin has arms longer than its legs.</strong> Only the great apes do. This never changes across the whole course, and it is the comparison students get wrong.</p>
+          </div>
+          <div class="col-green">
+            <div class="col-label">Across species</div>
+            <p style="font-size:0.8rem;line-height:1.65;margin:0;">Arm length compared between species. Here there <strong>is</strong> a trend: the australopithecines and <em>H. habilis</em> have long arms and short legs, and from <em>H. erectus</em> onwards the pattern is long legs and short arms.</p>
+          </div>
+        </div>
+        <p>Put together: an <em>A. afarensis</em> has long arms and short legs, but its arms are still shorter than its legs. It sits towards the ape end of the range without ever reaching it.</p>
+        <p>The 2021 marking key credits "longer legs and shorter arms" as an advance of <em>H. erectus</em> over <em>H. habilis</em>, which fixes <em>H. erectus</em> as the point where the shift is complete. Longer legs lengthen the stride and make walking and running over open ground more efficient.</p>
+        <p class="axis-note">The 2016 multiple choice settles the within-animal comparison: "length of arms greater than length of legs" was offered as a feature <em>P. robustus</em> shares with great apes, and the ratified answer rejected it.</p>
+      </div>
+      <div class="content-panel">
+        <h3>Finger curvature diminishes</h3>
+        <div class="trend-head"><p>Curvature of the finger bones is pronounced in <em>A. afarensis</em>, reduced in <em>A. africanus</em>, slight in <em>H. habilis</em> and absent in <em>H. erectus</em>.</p></div>
+        <p>Curved finger bones are a climbing feature. They give a stronger hooked grip on a branch, and they are one of the arboreal features the australopithecines keep alongside their bipedalism.</p>
+        <p>The value of this feature is comparative. A single retained primitive trait in one species is evidence of ancestry rather than of direction. It is the <strong>diminishing series</strong> that carries the argument, and that series is evidence of the trend away from arboreal life towards exclusively terrestrial bipedalism.</p>
+        <p>The series also survives the argument about behaviour. Whether <em>H. habilis</em> still climbed is debated, and the trend works on anatomy alone without needing that question settled.</p>
+        <p class="axis-note">One caveat. <em>H. naledi</em> is a late species with strongly curved fingers, and the 2022 marking key credits "long, curved fingers" for it while ruling out brachiation. The tidy gradient is a teaching simplification.</p>
+      </div>
+      <div class="content-panel">
+        <h3>The hand becomes a precision instrument</h3>
+        <p>As the hand stops being used for weight bearing and climbing, it changes into a tool for manipulation.</p>
+        <ul>
+          <li>The thumb becomes relatively longer compared with the fingers.</li>
+          <li>The thumb becomes fully opposable.</li>
+          <li>The palm becomes short and broad.</li>
+          <li>The muscles that move the fingers relocate to the forearm.</li>
+        </ul>
+        <p>Together these produce the <strong>precision grip</strong>, which allows fine manipulation of small objects. That grip is what makes deliberate tool manufacture possible, so this trend and the tool culture trend are two views of the same development.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>Name the comparison before answering. Arms against legs within one animal is a different question from arms against another species’ arms.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>The safe sentence for any australopithecine or <em>H. habilis</em>: long arms and short legs, but the arms are still shorter than the legs. Only the great apes have arms as long as or longer than their legs.</div>
+        <div class="exam-tip"><span class="tip-num">3</span><em>H. erectus</em> is the break point for limb proportions. From there on the pattern is long legs and short arms, and the 2021 key credits that as an advance over <em>H. habilis</em>.</div>
+        <div class="exam-tip"><span class="tip-num">4</span>For finger curvature, describe the anatomy and let the series make the argument. Whether <em>H. habilis</em> still climbed is debated.</div>
+        <div class="exam-tip"><span class="tip-num">5</span>The trend runs from bipedal and arboreal towards exclusively terrestrial bipedalism. Arboreal and bipedal are not opposite ends of one scale, because the australopithecines were both at once.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2021 Exam Q33</strong><br><strong>Q:</strong> Describe the evolutionary changes to the feet and to the hands, and how each contributed to bipedalism and to the mobility of the digits.<br><strong>A:</strong> Feet: longitudinal and transverse arches; big toe aligned with the other toes, non-prehensile; robust calcaneus. These allow the feet to carry more load, allow a striding gait, act as a shock absorber and give better balance when upright. Hands: thumb relatively longer compared with the fingers; opposability of the thumb; short broad palm; relocation of the muscles for the fingers to the forearm. These allow the precision grip and make the hands more manoeuvrable for manipulating objects.</div>
+        <div class="past-exam-entry"><strong>2016 Exam Q31</strong><br><strong>Q:</strong> Describe the curvature of the vertebral column, the pelvis, the carrying angle of the femur and the arches in the foot in a bipedal primate.<br><strong>A:</strong> Vertebral column: S-shaped, double curvature. Pelvis: short and broad, aligned with the vertebral column. Carrying angle: present, converging inwards from hip to knee. Arches: transverse and longitudinal, two arches.</div>
+        <div class="past-exam-entry"><strong>2023 Exam Q34</strong><br><strong>Q:</strong> Describe the pelvis, knees and toes of a fully bipedal hominin.<br><strong>A:</strong> Pelvis: short and wide, bowl shaped, from 1.8 million years ago. Knees: medial and lateral condyles large, knee joint locks. Toes: bones short and straight, big toe aligned with the other toes and not opposable.</div>
+        <div class="past-exam-entry"><strong>2024 Exam Q32</strong><br><strong>Q:</strong> Identify two characteristics of a typical human spine that allow for an upright stance and bipedal locomotion.<br><strong>A:</strong> Any two of: S-shaped or double curve spine; wedge shaped lumbar vertebrae; flexible structure with movement between vertebrae; large thickness to the vertebrae; intervertebral discs between vertebrae.</div>
+        <div class="past-exam-entry"><strong>2023 Exam Q34</strong><br><strong>Q:</strong> State the advantages of bipedalism.<br><strong>A:</strong> Freed hands to carry infants, tools and food; freed hands to pick vegetation and fruit from tree branches; can cover large distances over open ground efficiently; easier to see predators, to see above vegetation and to see long distances.</div>
+      </div>
+    </div>
+
+    <div id="tab-tools" class="tab-content">
+      <div class="content-panel">
+        <h3>Tools become more specialised</h3>
+        <div class="trend-head"><p>Three trends run across the four tool cultures: the range of materials widens, the workmanship increases, and the tools become specialised.</p></div>
+        <p>This is the one trend the syllabus names directly. Its wording is that trends are seen "in the changes in manufacturing techniques and the materials used" in the tool cultures of <em>H. habilis</em>, <em>H. erectus</em>, <em>H. neanderthalensis</em> and <em>H. sapiens</em>, and that studying the tools gives insight into the evolution of cognitive abilities and lifestyles.</p>
+        <p>Each trend is examined as a pair. State the change, then state what it tells us about the way hominins lived.</p>
+        <div class="trend-row">
+          <div class="trend-a"><div class="trend-lab">Trend, materials</div><p>A greater variety of materials is used, from stone only to bone, antler, ivory and wood.</p></div>
+          <div class="trend-b"><div class="trend-lab">What it tells us</div><p>Hominins used resources more effectively, used a wider variety of resources, and understood how to use their environment better.</p></div>
+        </div>
+        <div class="trend-row">
+          <div class="trend-a"><div class="trend-lab">Trend, workmanship</div><p>A greater number of blows is used, with increased workmanship, more time put into production and greater complexity.</p></div>
+          <div class="trend-b"><div class="trend-lab">What it tells us</div><p>Hominins completed more complex jobs, did finer work, and had time available to create.</p></div>
+        </div>
+        <div class="trend-row">
+          <div class="trend-a"><div class="trend-lab">Trend, specialisation</div><p>Tools became more specialised, tools were used to make other tools, and tools were hafted onto handles and shafts.</p></div>
+          <div class="trend-b"><div class="trend-lab">What it tells us</div><p>Hominins had more specialised roles within their communities.</p></div>
+        </div>
+        <p>A fourth way of putting the same point, used in 2024, is that early tool sets are <strong>generic</strong>, meaning one shape does every job, while later sets show <strong>variety</strong>, many different types of tool for different jobs. A variety of tools implies a variety of roles.</p>
+      </div>
+      <div class="content-panel">
+        <h3>The four cultures in sequence</h3>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Tool culture</th><th>Materials</th><th>Technique</th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>None recognised</td><td>&#8211;</td><td>&#8211;</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>None recognised</td><td>&#8211;</td><td>&#8211;</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>None recognised</td><td>&#8211;</td><td>&#8211;</td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>Oldowan, or pebble tools</td><td>Stone</td><td>Simple percussion</td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>Acheulean</td><td>Stone</td><td>Bifacial flaking</td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>Mousterian, or flake tools</td><td>Stone, bone, ivory, antler</td><td>Levallois method</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>Upper Palaeolithic</td><td>Stone, bone, ivory, antler, wood, shell</td><td>Pressure flaking, blade production</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="tgrid-note">The three Upper Palaeolithic cultures are the Aurignacian, the Solutrean and the Magdalenian, in that order.</p>
+        <p>Stated as tool types rather than culture names, which is how the multiple choice questions put it, the ratified order is <strong>pebble tools, bifacial hand axes, flake tools, blades</strong>.</p>
+        <p style="font-size:0.8rem;"><a href="tool-cultures.html" style="color:var(--ochre);font-weight:600;text-decoration:none;border-bottom:1px solid var(--ochre-light);">See the Tool Cultures page</a> for each culture in detail, with the key tools, techniques and uses.</p>
+      </div>
+      <div class="content-panel">
+        <h3>Tools, the brain and the hand</h3>
+        <p>The tool trend connects to two others on this page. Making a tool requires the precision grip, which is the endpoint of the hand trend, and it requires mental dexterity and problem solving ability, which is the brain trend.</p>
+        <p>The loop the 2022 key sets out runs like this. Bipedalism freed the hands to carry infants, tools and food. Manufacturing tools requires mental dexterity and problem solving. Tools became more complex in their size, manufacture and use. Efficient tools meant a better ability to hunt for meat. The increase in protein provided the energy required to support a larger brain. A larger brain may have contributed to more cooperation and communication, and speech and language are thought to have evolved as cranial capacity increased.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>Three trends, each worth two marks: materials, workmanship, specialisation. Give the change and the consequence every time.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>Learn the four pairings: Oldowan and <em>H. habilis</em>, Acheulean and <em>H. erectus</em>, Mousterian and <em>H. neanderthalensis</em>, Upper Palaeolithic and <em>H. sapiens</em>.</div>
+        <div class="exam-tip"><span class="tip-num">3</span>The ratified order stated as tool types is pebble tools, bifacial hand axes, flake tools, blades.</div>
+        <div class="exam-tip"><span class="tip-num">4</span>Tool cultures are never given dates in the marking keys. The order is what is examined.</div>
+        <div class="exam-tip"><span class="tip-num">5</span>For a specialisation question, the argument is that generic sets become varied sets, and a variety of tools implies a variety of roles within the community.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2019 Exam Q31</strong><br><strong>Q:</strong> State two trends that are evident in the manufacturing techniques of tools from early hominids to modern humans and outline what these trends indicate about changes in hominid lifestyle.<br><strong>A:</strong> One mark for each trend and one for each lifestyle consequence. Greater variety of materials used, from stone only to bone, antler, ivory and wood, meaning hominids used resources more effectively. Greater number of blows, increased workmanship, more time in tool production, meaning hominids completed more complex jobs, did finer work or had time to create. Tools became more specialised, tools used to make tools, hafted tools, meaning hominids had more specialised roles within communities.</div>
+        <div class="past-exam-entry"><strong>2023 Exam Q35</strong><br><strong>Q:</strong> Outline two trends that are evident in the manufacturing techniques of tools from early hominins to modern <em>Homo sapiens</em> and state what each of these trends indicate about changes in lifestyle.<br><strong>A:</strong> The same three trend and consequence pairs, two of them, at two marks each.</div>
+        <div class="past-exam-entry"><strong>2020 Exam Q38</strong><br><strong>Q:</strong> The tools display a trend in tool manufacture. State this trend and what it implies about the changes to hominin lifestyle.<br><strong>A:</strong> Greater workmanship, a greater number of blows made in construction, or greater design complexity. Hominids completed more specialised tasks, did finer work, or had more time to create.</div>
+        <div class="past-exam-entry"><strong>2024 Exam Q36</strong><br><strong>Q:</strong> Scientists stated that comparison of Set 2 and Set 3 provided evidence that hominins developed more specialised roles within their communities over time. Explain how this conclusion could be made from these tools.<br><strong>A:</strong> Set 3 is more primitive while Set 2 is advanced. Set 3 tools are generic while Set 2 shows variety, many different types of tools. A variety of tools suggests different roles or uses.</div>
+        <div class="past-exam-entry"><strong>2022 Exam Q39</strong><br><strong>Q:</strong> Explain the relationship between bipedalism, increasing cranial capacity and tool use seen in the hominin group.<br><strong>A:</strong> Any eight of: bipedalism freed the hands to carry infants, tools and food; manufacture of tools requires mental dexterity and problem solving abilities; tools became more complex in size, manufacture and use; efficient tools meant a better ability to hunt for meat; increased protein provided the energy required to support a larger brain; a larger brain may have contributed to more cooperation and communication; bipedalism may have led to overall behavioural changes; behavioural changes may have impacted cranial development and frontal lobe size; speech and language evolved due to increased cranial capacity.</div>
+        <div class="past-exam-entry"><strong>2025 Exam Q26</strong><br><strong>Q:</strong> Which of the following lists correctly the development of stone tools manufactured by humans, from earliest to most recent?<br><strong>A:</strong> (a) pebble tools, bifacial handaxes, flake tools, blades.</div>
+      </div>
+    </div>
+
+    <div id="tab-phylo" class="tab-content">
+      <div class="content-panel">
+        <h3>Reading a phylogenetic tree</h3>
+        <div class="trend-head"><p>A phylogenetic tree is a hypothesis about relatedness, not a record of what happened.</p></div>
+        <p>Evolution is a theory built on an incomplete fossil record, and the relationships between hominin species are proposed rather than established. That is why the position of a species differs between trees drawn by different researchers, and why the syllabus says evolutionary relationships "can be represented" using phylogenetic trees while adding that constructing them is not required.</p>
+        <p>Two things follow for an exam answer. Not every species found is a direct ancestor of modern humans, and a species sitting on a side branch is still evidence, because it shares an ancestor with the line that leads to us.</p>
+      </div>
+      <div class="content-panel">
+        <h3>Where the species sit</h3>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Position</th><th>Relationship to <em>H. sapiens</em></th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>Earliest of the seven</td><td>Most distantly related of the syllabus species</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>Gracile australopithecine</td><td>Ancestral to <em>Homo</em> on most trees, and to <em>P. robustus</em> on some</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>Specialised side branch</td><td>Shares an ancestor, not on the line to <em>Homo</em></td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>First of the genus <em>Homo</em></td><td>On the line to <em>H. sapiens</em></td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>After <em>H. habilis</em></td><td>On the line to <em>H. sapiens</em></td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>After <em>H. erectus</em>, before <em>H. sapiens</em></td><td>Most closely related. Shares a common ancestor with <em>H. sapiens</em></td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>The only living hominin</td><td>&#8211;</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><em>H. neanderthalensis</em> is the species most closely related to <em>H. sapiens</em>, and <em>A. afarensis</em> is the most distantly related. Both pairings have been examined directly.</p>
+        <p><em>H. sapiens</em> did not descend from <em>H. neanderthalensis</em>. The two branch from a shared common ancestor, and the 2020 examination names <em>Homo heidelbergensis</em> as that ancestor.</p>
+      </div>
+      <div class="content-panel">
+        <h3>Molecular evidence</h3>
+        <p>Comparing DNA sequences gives a second, independent line of evidence for relatedness, alongside the anatomy.</p>
+        <p><strong>Mitochondrial DNA</strong> has been extracted from <em>H. neanderthalensis</em> fossils and compared with that of modern humans, to determine whether speciation had in fact taken place. It is inherited only from the mother and mutates more readily than nuclear DNA. The number of mutations in a DNA molecule can be correlated with the time elapsed, so the greater the difference between two sequences, the less closely related the two groups are.</p>
+        <p><strong>Nuclear DNA</strong> is inherited from both parents. Recombination makes migration difficult to track with it, so it is used to trace evolutionary relationships between species, while mitochondrial DNA is used to trace migration routes between populations within a species.</p>
+        <p>Mitochondrial DNA has been used to create phylogenetic trees to show that <em>H. neanderthalensis</em> diverged from modern humans.</p>
+      </div>
+      <div class="exam-box">
+        <div class="exam-box-title">&#9733; Exam Focus</div>
+        <div class="exam-tip"><span class="tip-num">1</span>A phylogenetic tree is a hypothesis. Say that relationships are proposed rather than established, and that trees differ between researchers.</div>
+        <div class="exam-tip"><span class="tip-num">2</span>Not every species found is a direct ancestor of modern humans. <em>P. robustus</em> is the clearest example of a side branch.</div>
+        <div class="exam-tip"><span class="tip-num">3</span><em>H. neanderthalensis</em> is the most closely related species to <em>H. sapiens</em> and <em>A. afarensis</em> is the most distantly related.</div>
+        <div class="exam-tip"><span class="tip-num">4</span>For placing <em>H. neanderthalensis</em> on a tree, the key wants a position after <em>H. erectus</em> but before <em>H. sapiens</em>, justified as more modern than <em>H. erectus</em> and less modern than <em>H. sapiens</em>.</div>
+        <div class="exam-tip"><span class="tip-num">5</span>For mitochondrial DNA give the four steps: inherited only from the mother, mutates more readily than nuclear DNA, the number of mutations correlates with time elapsed, and greater difference means less closely related.</div>
+      </div>
+      <div class="exam-box-focus">
+        <div class="exam-box-title">&#9733; Past Exams</div>
+        <div class="past-exam-entry"><strong>2025 Exam Q33</strong><br><strong>Q:</strong> Identify the species that is most closely related to <em>Homo sapiens</em>, and the species that is most distantly related to <em>Homo sapiens</em>.<br><strong>A:</strong> Most closely related, <em>H. neanderthalensis</em>. Most distantly related, <em>A. afarensis</em>.</div>
+        <div class="past-exam-entry"><strong>2024 Exam Q36</strong><br><strong>Q:</strong> State where <em>H. neanderthalensis</em> would most likely be placed on the tree diagram. Justify your answer.<br><strong>A:</strong> A position falling after <em>H. erectus</em> but before <em>H. sapiens</em>, because it is considered more modern than <em>H. erectus</em> and less modern than <em>H. sapiens</em>.</div>
+        <div class="past-exam-entry"><strong>2020 Exam Q38</strong><br><em style="color:var(--text-mid);"><em>Homo heidelbergensis</em> had a cranial capacity around 1280 cc, closer to the size of modern humans than <em>Homo neanderthalensis</em>. Many researchers believe it is the common ancestor of both.</em><br><strong>Q:</strong> Redraw the phylogenetic tree showing <em>Homo heidelbergensis</em> as the common ancestor to modern humans and <em>Homo neanderthalensis</em>, and <em>Homo rhodesiensis</em> as more distantly related.<br><strong>A:</strong> <em>Homo rhodesiensis</em> on a different branch above the other two; <em>Homo heidelbergensis</em> on the common ancestor branch; <em>Homo neanderthalensis</em> and <em>Homo sapiens</em> both from the same common ancestor.</div>
+        <div class="past-exam-entry"><strong>2018 Exam Q42</strong><br><strong>Q:</strong> Describe how the study of mitochondrial DNA can be used to support the theory of evolution and the relationship between <em>Homo neanderthalensis</em> and modern humans.<br><strong>A:</strong> mtDNA is inherited only from the mother; mutations occur more readily in mtDNA than in nuclear DNA; the number of mutations within a DNA molecule can be correlated with time elapsed; the greater the diversity in mtDNA the less closely related they are; phylogenetic trees can be constructed to determine when divergence occurred.</div>
+        <div class="past-exam-entry"><strong>2025 Exam Q40</strong><br><strong>Q:</strong> Compare how nuclear DNA and mitochondrial DNA are used to provide evidence for evolution and migration.<br><strong>A:</strong> Nuclear DNA is found in the nuclei of cells, is inherited from both parents, and because of recombination migration is difficult to track, so it is used to trace evolutionary relationships between species. Mitochondrial DNA is found in the mitochondria, is inherited only from the mother and has a high mutation rate, so it is used to trace migration routes between populations within a species.</div>
+      </div>
+    </div>
+
+    <div id="tab-summary" class="tab-content">
+      <div class="content-panel">
+        <h3>Summary</h3>
+        <p>One grid per trend, in the order of the tabs. Every figure and description here matches the species pages.</p>
+      </div>
+      <div class="content-panel">
+        <h3>1. Brain size</h3>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Average cranial capacity</th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>420 cm&#179;</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>450 cm&#179;</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>530 cm&#179;</td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>600 cm&#179;</td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>1000 cm&#179;</td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>1450 cm&#179;</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>1350 cm&#179;</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="tgrid-note"><em>H. sapiens</em> sits below <em>H. neanderthalensis</em>. The larger Neanderthal figure reflects a larger, longer and more robust cranium rather than a more complex brain.</p>
+        <div style="max-width:300px;margin:0.6rem auto 0;"><svg width="100%" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+  <text x="2" y="9" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#8C7A6A">Cranial capacity, cm&#179;</text>
+  <text x="2" y="27" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">A. afarensis</text>
+  <rect x="2" y="30" width="42" height="9" fill="#C4BDB4"/>
+  <text x="49" y="38" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">420</text>
+  <text x="2" y="61" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">A. africanus</text>
+  <rect x="2" y="64" width="45" height="9" fill="#C4BDB4"/>
+  <text x="52" y="72" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">450</text>
+  <text x="2" y="95" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">P. robustus</text>
+  <rect x="2" y="98" width="53" height="9" fill="#C4BDB4"/>
+  <text x="60" y="106" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">530</text>
+  <text x="2" y="129" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">H. habilis</text>
+  <rect x="2" y="132" width="60" height="9" fill="#C4BDB4"/>
+  <text x="67" y="140" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">600</text>
+  <text x="2" y="163" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">H. erectus</text>
+  <rect x="2" y="166" width="100" height="9" fill="#C4BDB4"/>
+  <text x="107" y="174" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">1000</text>
+  <text x="2" y="197" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">H. neanderthalensis</text>
+  <rect x="2" y="200" width="145" height="9" fill="#C4BDB4"/>
+  <text x="152" y="208" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">1450</text>
+  <text x="2" y="231" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">H. sapiens</text>
+  <rect x="2" y="234" width="135" height="9" fill="#C4BDB4"/>
+  <text x="142" y="242" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">1350</text>
+</svg>
+</div>
+      </div>
+      <div class="content-panel">
+        <h3>2. Skull and face</h3>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Prognathism</th><th>Brow ridge</th><th>Forehead and vault</th><th>Chin</th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>Strong</td><td>Prominent, continuous, heavy</td><td>Low vault, sloping forehead</td><td>Absent</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>Large, less than <em>A. afarensis</em></td><td>Reduced, still present</td><td>Slightly arched, rounded braincase</td><td>Absent</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>Strong, heavy mandible</td><td>Prominent, continuous, heavy</td><td>Low vault, no forehead, sagittal crest</td><td>Absent</td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>Reduced</td><td>Small, arched over each eye</td><td>Higher, fuller, more rounded</td><td>Absent</td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>Reduced, flatter face</td><td>Thick and continuous</td><td>Long, low, thick walled, sagittal keel</td><td>Absent</td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>Projects more than <em>H. sapiens</em></td><td>Thick, heavy, continuous</td><td>Long, low, receding, occipital bun</td><td>Absent</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>Flat, tucked under the cranium</td><td>Reduced to absent</td><td>High rounded vault, vertical forehead</td><td>Present</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="content-panel">
+        <h3>3. Teeth and jaw</h3>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Dental arcade</th><th>Canines and diastema</th><th>Teeth</th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>U-shaped, almost rectangular</td><td>Pointed canines, diastema present</td><td>Large, broad, heavily enamelled</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>Between U-shaped and parabolic</td><td>Shorter, smaller, less pointed. No diastema</td><td>Large, thick enamel, more even in size</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>U-shaped</td><td>Small relative to the molars</td><td>Massive molars, molarised premolars</td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>More parabolic</td><td>Small, similar to other teeth. No diastema</td><td>Smaller, reduced molars and premolars</td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>Shorter and more rounded</td><td>Small and level. No diastema</td><td>Smaller than <em>H. habilis</em></td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>Rounded</td><td>Present in the tooth row</td><td>Larger than <em>H. sapiens</em>, retromolar space</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>Parabolic</td><td>Same size as neighbouring teeth. No diastema</td><td>Small and even in size</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="content-panel">
+        <h3>4. Bipedalism and limbs</h3>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Locomotion</th><th>Limb proportions</th><th>Finger curvature</th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>Bipedal and arboreal</td><td>Long arms, short legs</td><td>Pronounced</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>Bipedal and arboreal</td><td>Long arms, short legs</td><td>Reduced</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>Bipedal</td><td>Long arms, short legs</td><td>Genus level description only</td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>Bipedal</td><td>Long arms, short legs</td><td>Slight</td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>Bipedal</td><td>Long legs, short arms</td><td>Absent</td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>Bipedal</td><td>Short limbs, thick bones</td><td>Absent</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>Bipedal</td><td>Long legs, short arms</td><td>Absent</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="tgrid-note">In every species the arms are shorter than the legs. Only the great apes have arms as long as or longer than their legs.</p>
+      </div>
+      <div class="content-panel">
+        <h3>5. Tools</h3>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Tool culture</th><th>Materials</th><th>Technique</th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>None recognised</td><td>&#8211;</td><td>&#8211;</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>None recognised</td><td>&#8211;</td><td>&#8211;</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>None recognised</td><td>&#8211;</td><td>&#8211;</td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>Oldowan, or pebble tools</td><td>Stone</td><td>Simple percussion</td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>Acheulean</td><td>Stone</td><td>Bifacial flaking</td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>Mousterian, or flake tools</td><td>Stone, bone, ivory, antler</td><td>Levallois method</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>Upper Palaeolithic</td><td>Stone, bone, ivory, antler, wood, shell</td><td>Pressure flaking, blades</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="content-panel">
+        <h3>6. Phylogeny</h3>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Position</th><th>Relationship to <em>H. sapiens</em></th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>Earliest of the seven</td><td>Most distantly related</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>Gracile australopithecine</td><td>Ancestral to <em>Homo</em> on most trees</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>Specialised side branch</td><td>Shares an ancestor, off the line to <em>Homo</em></td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>First of the genus <em>Homo</em></td><td>On the line to <em>H. sapiens</em></td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>After <em>H. habilis</em></td><td>On the line to <em>H. sapiens</em></td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>After <em>H. erectus</em>, before <em>H. sapiens</em></td><td>Most closely related</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>The only living hominin</td><td>&#8211;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="content-panel">
+        <h3>Dates and locations</h3>
+        <div class="tgrid-wrap">
+          <table class="tgrid">
+            <thead><tr><th>Species</th><th>Existed</th><th>Location</th></tr></thead>
+            <tbody>
+              <tr><th><em style="white-space:nowrap">A. afarensis</em></th><td>3.9 &#8211; 2.9 mya</td><td>East Africa</td></tr>
+              <tr><th><em style="white-space:nowrap">A. africanus</em></th><td>3.3 &#8211; 2.1 mya</td><td>Southern Africa</td></tr>
+              <tr><th><em style="white-space:nowrap">P. robustus</em></th><td>2.0 &#8211; 1.2 mya</td><td>Southern Africa</td></tr>
+              <tr><th><em style="white-space:nowrap">H. habilis</em></th><td>2.4 &#8211; 1.4 mya</td><td>East and Southern Africa</td></tr>
+              <tr><th><em style="white-space:nowrap">H. erectus</em></th><td>1.9 mya &#8211; 110 000 ya</td><td>Africa and Asia</td></tr>
+              <tr><th><em style="white-space:nowrap">H. neanderthalensis</em></th><td>400 000 &#8211; 40 000 ya</td><td>Europe and the Middle East</td></tr>
+              <tr><th><em style="white-space:nowrap">H. sapiens</em></th><td>300 000 ya &#8211; present</td><td>Worldwide</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="tgrid-note">Dates and locations sit outside the syllabus dot points and are included for context.</p>
+      </div>
+    </div>
+
+  </td>
+  <td class="col-right" style="width:215px;vertical-align:top;padding:1rem 1.5rem 1rem 0.5rem;">
+    <div class="fossil-img-box" style="margin-bottom:1rem;">
+      <div style="background:#ffffff;padding:0.5rem 0.4rem;">
+<svg width="100%" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+  <text x="2" y="9" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#8C7A6A">Cranial capacity, cm&#179;</text>
+  <text x="2" y="27" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">A. afarensis</text>
+  <rect x="2" y="30" width="42" height="9" fill="#C4BDB4"/>
+  <text x="49" y="38" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">420</text>
+  <text x="2" y="61" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">A. africanus</text>
+  <rect x="2" y="64" width="45" height="9" fill="#C4BDB4"/>
+  <text x="52" y="72" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">450</text>
+  <text x="2" y="95" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">P. robustus</text>
+  <rect x="2" y="98" width="53" height="9" fill="#C4BDB4"/>
+  <text x="60" y="106" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">530</text>
+  <text x="2" y="129" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">H. habilis</text>
+  <rect x="2" y="132" width="60" height="9" fill="#C4BDB4"/>
+  <text x="67" y="140" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">600</text>
+  <text x="2" y="163" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">H. erectus</text>
+  <rect x="2" y="166" width="100" height="9" fill="#C4BDB4"/>
+  <text x="107" y="174" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">1000</text>
+  <text x="2" y="197" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">H. neanderthalensis</text>
+  <rect x="2" y="200" width="145" height="9" fill="#C4BDB4"/>
+  <text x="152" y="208" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">1450</text>
+  <text x="2" y="231" font-family="Inter,Arial,sans-serif" font-size="8" fill="#5C4A3A" font-style="italic">H. sapiens</text>
+  <rect x="2" y="234" width="135" height="9" fill="#C4BDB4"/>
+  <text x="142" y="242" font-family="Inter,Arial,sans-serif" font-size="7.5" fill="#5C4A3A">1350</text>
+</svg>
+      </div>
+      <div class="fossil-img-caption">Average cranial capacity</div>
+    </div>
+
+    <div class="panel" style="margin-bottom:1rem;">
+      <div class="panel-header">Species pages</div>
+      <div class="panel-body">
+        <div class="link-list">
+          <a href="afarensis-profile.html">A. afarensis</a>
+          <a href="africanus-profile.html">A. africanus</a>
+          <a href="robustus-profile.html">P. robustus</a>
+          <a href="habilis-profile.html">H. habilis</a>
+          <a href="erectus-profile.html">H. erectus</a>
+          <a href="neanderthalensis-profile.html">H. neanderthalensis</a>
+          <a href="sapiens-profile.html">H. sapiens</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">Tool Cultures</div>
+      <div class="panel-body">
+        <p class="panel-link">The four tool cultures, their techniques and their key tools are set out on the <a href="tool-cultures.html">Tool Cultures page</a>.</p>
+      </div>
+    </div></td>
+</tr>
+</table><!-- end main grid -->
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
